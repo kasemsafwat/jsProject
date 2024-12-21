@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../FontAwesome/all.min.css" />
+    <link rel="stylesheet" href="../css/login-registration.css" />
+    <title>registration Page</title>
+  </head>
+  <body>
+    <div class="login-bg">
+      <div class="container">
+        <div class="left-section"></div>
+        <div class="right-section">
+          <img
+            src="../image/E-commImg/AdobeStock_241431868-1-scaled-1 (1).jpeg"
+          />
+          <br />
+          <h1>sign up</h1>
+          <h2>Welcome to our website</h2>
+          <form method="post">
+            <div class="input-group">
+              <label for="name">Name</label>
+              <input
+                type="name"
+                id="name"
+                placeholder="Enter Your name"
+                required
+              />
+              <span></span>
+            </div>
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter Your Email"
+                required
+              />
+              <span></span>
+            </div>
+            <div class="input-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter Your Password"
+                required
+              />
+              <span></span>
+            </div>
+            <div class="input-group">
+              <label for="repeatpassword">repeat Password</label>
+              <input
+                type="password"
+                id="repeatpassword"
+                placeholder="repeat Your Password"
+                required
+              />
+              <span></span>
+            </div>
+            <button type="button" id="signup" class="btn">sign up</button>
+            <span></span>
+          </form>
+
+          <div class="or">or</div>
+
+          <p class="register">
+            sign in with
+            <a href="./register.html"
+              >Google <i class="fa-brands fa-google"></i
+            ></a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <script src="../FontAwesome/all.min.js"></script>
+    <script type="module" src="../js/login.js"></script>
+  </body>
+</html>
