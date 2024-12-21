@@ -1,0 +1,407 @@
+/* glopal css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 64px;
+  color: #222;
+}
+
+h2 {
+  font-size: 46px;
+  line-height: 54px;
+  color: #222;
+}
+
+h4 {
+  font-size: 20px;
+  color: #222;
+}
+
+h6 {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+p {
+  font-size: 16px;
+  color: #465b52;
+  margin: 15px 0 20px 0;
+}
+
+.section-p1 {
+  padding: 40px 80px;
+}
+
+.section-m1 {
+  margin: 40px 0;
+}
+
+body {
+  width: 100%;
+}
+/* Header */
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 80px;
+  background-color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.16);
+  z-index: 999;
+  top: 0;
+  left: 0;
+  height: 80px;
+}
+
+.shopping-nav {
+  top: 0;
+  left: 0;
+  position: sticky;
+}
+/* navbar */
+#navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#navbar li {
+  list-style: none;
+  padding: 0 20px;
+  position: relative;
+}
+#navbar li a {
+  padding: 16px 18px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+  transition: 0.4s ease;
+}
+#navbar li a:hover,
+#navbar li a.active {
+  color: orange;
+}
+#navbar li a.active::after,
+#navbar li a:hover::after {
+  content: "";
+  width: 30%;
+  height: 2px;
+  background: orange;
+  position: absolute;
+  bottom: -4px;
+  left: 20px;
+}
+/* left Side */
+#lside {
+  background-image: url("../image/E-commImg/istockphoto-1295609515-2048x2048.jpg");
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: top 25% right 0;
+  padding: 0 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+#lside h4 {
+  font-weight: bolder;
+  padding-bottom: 15px;
+  color: orange;
+}
+#lside h2 {
+  color: darkblue;
+}
+#lside h1 {
+  color: darkblue;
+}
+#lside p {
+  font-weight: bold;
+}
+/* button */
+#lside button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#lside button:hover {
+  /* background-color: #45a049; */
+  background-color: orange;
+}
+
+/* galary */
+
+#galary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+#galary img {
+  width: 200px;
+  text-align: center;
+  padding: 15px 15px;
+}
+#galary h6 {
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: orange;
+  background-color: rgb(203, 233, 243);
+  border: none;
+  border-radius: 5px;
+}
+#galary img {
+  width: 300px;
+  height: 200px;
+}
+
+/* products */
+
+#products {
+  text-align: center;
+}
+#products .product {
+  width: 23%;
+  min-width: 250px;
+  padding: 10px 12px;
+  border: 1px solid #e9d9c8;
+  border-radius: 20px;
+  /* cursor: pointer; */
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.03);
+  margin: 15px 0;
+  transition: 0.3s ease;
+  position: relative;
+}
+#products .product:hover {
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.07);
+}
+#products .product img {
+  width: 100%;
+  border-radius: 20px;
+}
+#products .product .discription {
+  text-align: start;
+  padding: 10px 0;
+}
+#products .product .discription span {
+  color: dark gray;
+  font-size: 12px;
+}
+#products .product .discription h5 {
+  padding-top: 7px;
+  color: #222;
+  font-size: 14px;
+}
+#products .product .discription i {
+  font-size: 12px;
+  color: gold !important;
+}
+#products .product .discription h4 {
+  padding-top: 7px;
+  font-size: 16px;
+  font-weight: 800;
+  color: rgb(0, 128, 85);
+}
+#products .product #cart {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50px;
+  background-color: rgb(232, 232, 232);
+  border: 1px solid rgb(183, 175, 175);
+  color: orange;
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+}
+#products .product-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* about */
+
+#about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /*   background-image: url(ProductsImages/main-about-1-1600x700\(1\).jpg); */
+  width: 100%;
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+#about h4 {
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  z-index: 999;
+}
+#about h2 {
+  color: rgb(255, 255, 255);
+  font-size: 50px;
+  padding-bottom: 30px;
+}
+#about h2 span {
+  color: red;
+}
+
+/* footer */
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #dfdada;
+}
+footer .lf p {
+  font-size: 20px;
+}
+footer .mf p {
+  font-size: 20px;
+}
+
+.gradient-text {
+  font-size: 30px;
+  background-image: linear-gradient(to right, #a75a03, #b6970e);
+  /* ...... Gradient colors  */
+  -webkit-background-clip: text;
+  /* ....... Ensures the background is clipped to the text  */
+  background-clip: text;
+  /* ......For non-WebKit browsers  */
+  color: transparent;
+  /* ....... Makes the text transparent so the gradient shows */
+}
+
+/* category nav bar */
+
+nav {
+  background-color: #333;
+  padding: 10px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 999999;
+}
+
+nav button {
+  background-color: #444;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 20px;
+  background-color: #f4f4f4;
+  flex-grow: 1;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+/* ********************************************************************* */
+/* slideshow */
+
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background: #000;
+}
+
+.slides {
+  display: flex;
+  width: 800px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.slidbutton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 18px;
+}
+
+.slidbutton:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.slidbutton.prev {
+  left: 10px;
+}
+
+.slidbutton.next {
+  right: 10px;
+}
+
+/* ******************************************************* */
+
+/* static background section in home page */
+.static-background {
+  background-image: url("../image/product/1.jpg"); /* Replace with your image path */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  color: white;
+}
+.normal-background {
+  background-color: #f0f0f0;
+}
+.static-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Black background with 60% opacity */
+  z-index: 1;
+}
+
+.static-background h2,
+.static-background p {
+  position: relative;
+  z-index: 2; /* Ensure content appears above the background overlay */
+}
