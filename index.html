@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="icon" type="image/x-icon" href="image/E-commImg/icon.png" />
+    <link
+      rel="stylesheet"
+      href="FontAwesome/fontawesome-free-6.7.1-web/css/all.css"
+    />
+    <!-- <link rel="stylesheet" href="css/dark-theme.css" disabled /> -->
+    <link rel="stylesheet" href="css/style.css" id="theme-link" />
+  </head>
+  <body>
+    <!-- header and navbar -->
+    <section id="header" class="shopping-nav">
+      <a href="html/shop.html"
+        ><img
+          src="image/E-commImg/logo-high-resolution-logo-transparent.png"
+          alt="logo"
+          class="logo"
+          width="90px"
+      /></a>
+      <div>
+        <ul id="navbar">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="html/shop.html">Shop</a></li>
+          <li><a href="#about">About</a></li>
+          <!-- <li><a href="contact.html">Contact Us</a></li> -->
+          <li><a href="html/login.html">Login</a></li>
+          <li>
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+          <li id="theme-toggle">
+            <!-- (Light Theme) -->
+            <i class="fa-solid fa-sun" id="sun-icon"></i>
+            <!-- (Dark Theme) -->
+            <i
+              class="fa-solid fa-moon"
+              id="moon-icon"
+              style="display: none"
+            ></i>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------- -->
+    <section id="lside">
+      <h4>Don't Miss Our Offers</h4>
+      <h2>Best-Deals</h2>
+      <h1>On All Products</h1>
+      <p>Up To 60% Off <i class="fa-solid fa-exclamation"></i></p>
+      <button>Here!!</button>
+    </section>
+    <!-- ------------------------------------------------------------------ -->
+    <section id="galary" class="section-p1">
+      <div class="box">
+        <img
+          src="image/E-commImg/AdobeStock_241431868-1-scaled-1 (1).jpeg"
+          alt="rel.."
+        />
+        <h6>
+          All You Wish For <i class="fa-solid fa-wand-magic-sparkles"></i>
+        </h6>
+      </div>
+      <div>
+        <img src="image/E-commImg/selection-086-500x500.webp" alt="rel.." />
+        <h6>Free Fast Shipping <i class="fa-solid fa-truck-fast"></i></h6>
+      </div>
+      <div>
+        <img
+          src="image/E-commImg/shipping-details-webnexs-1024x576.webp"
+          alt="rel.."
+        />
+        <h6>Track Your Order <i class="fa-solid fa-location-dot"></i></h6>
+      </div>
+      <div>
+        <img
+          src="image/E-commImg/how-to-save-money-daily-monthly-and-long-term-4684028_V1-80848e0491954ca48f276a4032476a42.png"
+          alt="rel.."
+        />
+        <h6>Save Money <i class="fa-solid fa-piggy-bank"></i></h6>
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------ -->
+    <!--     <section id="banner" class="section-m1">
+
+    </section> -->
+    <section id="about" class="static-background">
+      <h4>24hr Service</h4>
+      <h2>Up To <span>60%</span>Discounts</h2>
+    </section>
+    <!-- ------------------------------------------------------------------ -->
+    <!-- slideshow section -->
+    <section>
+      <div class="slideshow-container">
+        <div class="slides">
+          <img src="image/slideshow/1.jpg" style="width: 100%" alt="Image 1" />
+          <img src="image/slideshow/2.avif" style="width: 100%" alt="Image 2" />
+          <img src="image/slideshow/3.jpg" style="width: 100%" alt="Image 3" />
+          <img src="image/slideshow/4.jpeg" style="width: 100%" alt="Image 3" />
+          <img src="image/slideshow/5.webp" style="width: 100%" alt="Image 3" />
+          <img src="image/slideshow/6.jpeg" style="width: 100%" alt="Image 3" />
+          <img src="image/slideshow/7.jpg" style="width: 100%" alt="Image 3" />
+          <img src="image/slideshow/1.jpg" style="width: 100%" alt="Image 1" />
+          <img src="image/slideshow/2.avif" style="width: 100%" alt="Image 2" />
+        </div>
+        <button class="prev slidbutton" onclick="navigateSlide(-1)">
+          &#10094;
+        </button>
+        <button class="next slidbutton" onclick="navigateSlide(1)">
+          &#10095;
+        </button>
+      </div>
+    </section>
+    <!-- ------------------------------------------------------------------ -->
+    <!-- footer -->
+    <footer class="section-p1">
+      <div class="lf">
+        <h4 class="gradient-text">Contact Us</h4>
+        <p class="gradient-text">
+          <strong>Address:</strong>ITI-Bani Suef Branch
+          <i class="fa-solid fa-map-location-dot"></i>
+        </p>
+        <p class="gradient-text">
+          <strong>Phone:</strong>17002<i class="fa-solid fa-phone"></i>
+        </p>
+        <p class="gradient-text">
+          <strong>Email:</strong>ITIinfo@iti.gov.eg
+          <i class="fa-regular fa-envelope"></i>
+        </p>
+      </div>
+      <div class="mf">
+        <h4 class="gradient-text">Follow Us</h4>
+        <p class="gradient-text">
+          <strong>Facebook:</strong><i class="fa-brands fa-facebook"></i>
+        </p>
+        <p class="gradient-text">
+          <strong>Twitter:</strong><i class="fa-brands fa-twitter"></i>
+        </p>
+        <p class="gradient-text">
+          <strong>Youtube:</strong><i class="fa-brands fa-youtube"></i>
+        </p>
+      </div>
+      <div class="rf">
+        <h4 class="gradient-text">Secure Payment</h4>
+        <img
+          src="image/ProductsImages/R2.png"
+          alt=" visa,mastercard etc.."
+          width="400px"
+        />
+      </div>
+    </footer>
+    <!-- <script src="FontAwesome/all.min.js"></script> -->
+    <script src="js/script.js"></script>
+  </body>
+</html>
