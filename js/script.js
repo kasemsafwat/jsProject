@@ -1,3 +1,47 @@
+//ــــــــــــــــــــــــــــــــ..... slideshow image ....ــــــــــــــــــــــــــــــــــــ//
+
+const slides = document.querySelector(".slides");
+const images = document.querySelectorAll(".slides img");
+
+// Limit the total number of slides to show
+const maxSlidesToShow = images.length - 3; // Exclude last 3 images
+let currentIndex = 0;
+
+// Function to update the slide position
+function showSlide(index) {
+  // Ensure the index stays within the allowed range
+  if (index < 0) {
+    currentIndex = maxSlidesToShow - 1; // Go to the last valid slide
+  } else if (index >= maxSlidesToShow) {
+    currentIndex = 0; // Loop back to the first slide
+  } else {
+    currentIndex = index;
+  }
+
+  // Move the slides container
+  slides.style.transform = `translateX(${-currentIndex * 100}%)`;
+}
+
+// Manual navigation
+function navigateSlide(direction) {
+  clearInterval(autoPlayInterval); // Stop autoplay when user interacts
+  showSlide(currentIndex + direction);
+  startAutoPlay(); // Restart autoplay
+}
+
+// Automatic sliding
+function startAutoPlay() {
+  autoPlayInterval = setInterval(() => {
+    showSlide(currentIndex + 1);
+  }, 3000); // Change every 3 seconds
+}
+
+// Initialize slideshow
+let autoPlayInterval;
+startAutoPlay();
+showSlide(currentIndex);
+
+/**********************************************************************************************************/
 //___________________________...Toggle Theme...__________________________________________//
 // Get the elements
 const themeToggleButton = document.getElementById("theme-toggle");
@@ -80,7 +124,7 @@ navbarLinks.forEach((link) => {
 
 //ـــــــــــــــــــــــــ...... javascript for shopping page ..... ـــــــــــــــــــــــ//
 // Function to change content dynamically based on button click
-function changeContent(section) {
+function changeContentcategory(section) {
   // Hide all sections
   const sections = document.querySelectorAll(".section");
   sections.forEach(function (sec) {
@@ -92,45 +136,108 @@ function changeContent(section) {
   activeSection.classList.add("active");
 }
 
-//ــــــــــــــــــــــــــــــــ..... slideshow image ....ــــــــــــــــــــــــــــــــــــ//
+/**********************************************************************************************************/
+/*  script for admin page */
+// Function to change content dynamically
+function changeContentAdmin(section) {
+  const content = document.getElementById("content");
 
-const slides = document.querySelector(".slides");
-const images = document.querySelectorAll(".slides img");
-
-// Limit the total number of slides to show
-const maxSlidesToShow = images.length - 3; // Exclude last 3 images
-let currentIndex = 0;
-
-// Function to update the slide position
-function showSlide(index) {
-  // Ensure the index stays within the allowed range
-  if (index < 0) {
-    currentIndex = maxSlidesToShow - 1; // Go to the last valid slide
-  } else if (index >= maxSlidesToShow) {
-    currentIndex = 0; // Loop back to the first slide
-  } else {
-    currentIndex = index;
+  let contentHtml = "";
+  switch (section) {
+    case "home":
+      contentHtml = `
+        <h1> Edit Home Page : </h1>
+        <br>
+        <p> 1 : Edit offers displayed in home page </p>
+        <button>Edit Offers</button>
+      `;
+      break;
+    case "shop":
+      contentHtml = `
+       <h1>Edit shop Page :</h1>
+      <br />
+      <div class="seccontainer">
+        <div class="sec">
+          <lable> 1 : Edit categorys displayed in shop page </lable>
+          <input type="text" name="add" placeholder="category name" />
+          <input type="text" name="add" placeholder="categorys title" />
+          <input type="text" name="add" placeholder="categorys description" />
+          <button>Add category</button>
+          <select>
+            <option value="Living">Living Room</option>
+            <option value="Bedroom">Bedroom</option>
+            <option value="Dining">Dining Room</option>
+            <option value="HomeOffice">Home Office</option>
+            <option value="Outdoor">Outdoor</option>
+            <option value="Kids">Kids</option>
+            <option value="Chair">Chair</option>
+          </select>
+          <button>remove category</button>
+        </div>
+        <div class="sec">
+          <label>2 : Edit products displayed in shop page</label>
+          <input type="text" name="add" placeholder="product name" required />
+          <input type="text" name="add" placeholder="product price" required />
+          <input
+            type="text"
+            name="add"
+            placeholder="product description"
+            required
+          />
+          <input
+            type="file"
+            name="add"
+            placeholder="product description"
+            required
+          />
+          <button>add product</button>
+          <select>
+            <option value="Living">Living Room</option>
+            <option value="Bedroom">Bedroom</option>
+            <option value="Dining">Dining Room</option>
+            <option value="HomeOffice">Home Office</option>
+            <option value="Outdoor">Outdoor</option>
+            <option value="Kids">Kids</option>
+            <option value="Chair">Chair</option>
+          </select>
+          <button>remove product</button>
+        </div>
+      </div>
+      `;
+      break;
+    case "order":
+      contentHtml = `
+      <h1>fuck you </h1>
+      `;
+      break;
+    case "contact":
+      contentHtml = `
+        <h1>Contact</h1>
+        <p>Get in touch with us. We'd love to hear from you!</p>
+      `;
+      break;
+    default:
+      contentHtml = `
+        <h1>asd asd asd s</h1>
+        
+      `;
+      break;
   }
 
-  // Move the slides container
-  slides.style.transform = `translateX(${-currentIndex * 100}%)`;
+  content.innerHTML = contentHtml;
 }
 
-// Manual navigation
-function navigateSlide(direction) {
-  clearInterval(autoPlayInterval); // Stop autoplay when user interacts
-  showSlide(currentIndex + direction);
-  startAutoPlay(); // Restart autoplay
-}
+/************************************************************************************************/
 
-// Automatic sliding
-function startAutoPlay() {
-  autoPlayInterval = setInterval(() => {
-    showSlide(currentIndex + 1);
-  }, 3000); // Change every 3 seconds
-}
+/*  javascript for product page */
 
-// Initialize slideshow
-let autoPlayInterval;
-startAutoPlay();
-showSlide(currentIndex);
+var mainImg = document.getElementById("mainImg");
+var smallImg = document.querySelectorAll(".small-Img");
+
+function changeImage(imageSrc) {
+  const mainImage = document.getElementById("mainImg");
+  mainImage.src = imageSrc;
+}
+/************************************************************************************************/
+
+/*  script for login and registration pages*/

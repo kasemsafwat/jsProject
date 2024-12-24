@@ -19,6 +19,7 @@ login.addEventListener("click", async (event) => {
     displayError(email, Emailmessage);
   } else {
     clearError(email);
+    a;
   }
 
   // Password validation
