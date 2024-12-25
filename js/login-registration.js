@@ -71,7 +71,13 @@ login.addEventListener("click", async (event) => {
           refreshToken: res.refreshToken,
         })
       );
-      window.location.href = "../index.html";
+console.log(res);
+
+      if (res.role == "admin") {
+        window.location.href = "../html/admin.html";
+      } else {
+        window.location.href = "../index.html";
+      }
     }
   } catch (error) {
     console.error("Login Error:", error);
