@@ -1,11 +1,11 @@
-const checkEmail = async (email) => {
+export const checkEmail = async (email) => {
   const regexEmail = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.(com|gov|net)$/;
   return !regexEmail.test(email)
     ? { Emailvalid: false, message: "❌ Invaild Email" }
     : { Emailvalid: true, message: " ✅ Valid Email" };
 };
 
-const checkPassword = (password) => {
+export const checkPassword = (password) => {
   const errors = [];
 
   if (password.length < 8) {
@@ -25,20 +25,20 @@ const checkPassword = (password) => {
     : { valid: true, message: "✅ Strong Password" };
 };
 
-const customeError = async (message, element) => {
+export const customeError = async (message, element) => {
   element.textContent = message;
   element.classList.add("error");
   element.style.textAlign = "center";
 };
 
 // Utility functions for error handling
-function displayError(inputElement, message) {
+export function displayError(inputElement, message) {
   const errorSpan = inputElement.nextElementSibling;
   errorSpan.textContent = message;
   errorSpan.classList.add("error");
 }
 
-function clearError(inputElement) {
+export function clearError(inputElement) {
   const errorSpan = inputElement.nextElementSibling;
   errorSpan.textContent = "";
   errorSpan.classList.remove("error");

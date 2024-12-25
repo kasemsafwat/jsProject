@@ -1,48 +1,9 @@
-//ــــــــــــــــــــــــــــــــ..... slideshow image ....ــــــــــــــــــــــــــــــــــــ//
+//script.js
 
-const slides = document.querySelector(".slides");
-const images = document.querySelectorAll(".slides img");
-
-// Limit the total number of slides to show
-const maxSlidesToShow = images.length - 3; // Exclude last 3 images
-let currentIndex = 0;
-
-// Function to update the slide position
-function showSlide(index) {
-  // Ensure the index stays within the allowed range
-  if (index < 0) {
-    currentIndex = maxSlidesToShow - 1; // Go to the last valid slide
-  } else if (index >= maxSlidesToShow) {
-    currentIndex = 0; // Loop back to the first slide
-  } else {
-    currentIndex = index;
-  }
-
-  // Move the slides container
-  slides.style.transform = `translateX(${-currentIndex * 100}%)`;
-}
-
-// Manual navigation
-function navigateSlide(direction) {
-  clearInterval(autoPlayInterval); // Stop autoplay when user interacts
-  showSlide(currentIndex + direction);
-  startAutoPlay(); // Restart autoplay
-}
-
-// Automatic sliding
-function startAutoPlay() {
-  autoPlayInterval = setInterval(() => {
-    showSlide(currentIndex + 1);
-  }, 3000); // Change every 3 seconds
-}
-
-// Initialize slideshow
-let autoPlayInterval;
-startAutoPlay();
-showSlide(currentIndex);
-
-/**********************************************************************************************************/
 //___________________________...Toggle Theme...__________________________________________//
+
+import { apiSendRequest } from "./apiFeature.js";
+
 // Get the elements
 const themeToggleButton = document.getElementById("theme-toggle");
 const sunIcon = document.getElementById("sun-icon");
@@ -55,41 +16,45 @@ const darkThemeLink = document.querySelector(
 );
 
 // Check if there's a saved theme preference in localStorage
-let theme = localStorage.getItem("theme");
+// let theme = localStorage.getItem("theme");
 
 // Apply the saved theme on page load
-if (theme === "dark") {
-  // Dark theme is applied
-  darkThemeLink.removeAttribute("disabled");
-  themeLink.setAttribute("disabled", "true");
-  moonIcon.style.display = "none"; // Hide moon icon in dark theme
-  sunIcon.style.display = "block"; // Show sun icon in dark theme
-} else {
-  // Light theme is applied
-  darkThemeLink.setAttribute("disabled", "true");
-  themeLink.removeAttribute("disabled");
-  moonIcon.style.display = "block"; // Show moon icon in light theme
-  sunIcon.style.display = "none"; // Hide sun icon in light theme
-}
+// if (theme === "dark") {
+//   // Dark theme is applied
+//   darkThemeLink.removeAttribute("disabled");
+//   themeLink.setAttribute("disabled", "true");
+//   moonIcon.style.display = "none"; // Hide moon icon in dark theme
+//   sunIcon.style.display = "block"; // Show sun icon in dark theme
+// } else {
+//   // Light theme is applied
+//   console.log("hi");
+
+//   darkThemeLink.setAttribute("disabled", "true");
+//   console.log("error");
+
+//   themeLink.removeAttribute("disabled");
+//   moonIcon.style.display = "block"; // Show moon icon in light theme
+//   sunIcon.style.display = "none"; // Hide sun icon in light theme
+// }
 
 // Toggle the theme when the button is clicked
-themeToggleButton.addEventListener("click", function () {
-  if (darkThemeLink.disabled) {
-    // Switch to Dark Theme
-    darkThemeLink.removeAttribute("disabled");
-    themeLink.setAttribute("disabled", "true");
-    moonIcon.style.display = "none"; // Hide moon icon in dark theme
-    sunIcon.style.display = "block"; // Show sun icon in dark theme
-    localStorage.setItem("theme", "dark"); // Save dark theme preference
-  } else {
-    // Switch to Light Theme
-    darkThemeLink.setAttribute("disabled", "true");
-    themeLink.removeAttribute("disabled");
-    moonIcon.style.display = "block"; // Show moon icon in light theme
-    sunIcon.style.display = "none"; // Hide sun icon in light theme
-    localStorage.setItem("theme", "light"); // Save light theme preference
-  }
-});
+// themeToggleButton.addEventListener("click", function () {
+//   if (darkThemeLink.disabled) {
+//     // Switch to Dark Theme
+//     darkThemeLink.removeAttribute("disabled");
+//     themeLink.setAttribute("disabled", "true");
+//     moonIcon.style.display = "none"; // Hide moon icon in dark theme
+//     sunIcon.style.display = "block"; // Show sun icon in dark theme
+//     localStorage.setItem("theme", "dark"); // Save dark theme preference
+//   } else {
+//     // Switch to Light Theme
+//     darkThemeLink.setAttribute("disabled", "true");
+//     themeLink.removeAttribute("disabled");
+//     moonIcon.style.display = "block"; // Show moon icon in light theme
+//     sunIcon.style.display = "none"; // Hide sun icon in light theme
+//     localStorage.setItem("theme", "light"); // Save light theme preference
+//   }
+// });
 //___________________________...ToggleTheme...__________________________________________//
 
 //____________________________.....NAVBAR.....____________________________//
@@ -124,7 +89,7 @@ navbarLinks.forEach((link) => {
 
 //ـــــــــــــــــــــــــ...... javascript for shopping page ..... ـــــــــــــــــــــــ//
 // Function to change content dynamically based on button click
-function changeContentcategory(section) {
+function changeContent(section) {
   // Hide all sections
   const sections = document.querySelectorAll(".section");
   sections.forEach(function (sec) {
@@ -136,108 +101,82 @@ function changeContentcategory(section) {
   activeSection.classList.add("active");
 }
 
-/**********************************************************************************************************/
-/*  script for admin page */
-// Function to change content dynamically
-function changeContentAdmin(section) {
-  const content = document.getElementById("content");
+//ــــــــــــــــــــــــــــــــ..... slideshow image ....ــــــــــــــــــــــــــــــــــــ//
 
-  let contentHtml = "";
-  switch (section) {
-    case "home":
-      contentHtml = `
-        <h1> Edit Home Page : </h1>
-        <br>
-        <p> 1 : Edit offers displayed in home page </p>
-        <button>Edit Offers</button>
-      `;
-      break;
-    case "shop":
-      contentHtml = `
-       <h1>Edit shop Page :</h1>
-      <br />
-      <div class="seccontainer">
-        <div class="sec">
-          <lable> 1 : Edit categorys displayed in shop page </lable>
-          <input type="text" name="add" placeholder="category name" />
-          <input type="text" name="add" placeholder="categorys title" />
-          <input type="text" name="add" placeholder="categorys description" />
-          <button>Add category</button>
-          <select>
-            <option value="Living">Living Room</option>
-            <option value="Bedroom">Bedroom</option>
-            <option value="Dining">Dining Room</option>
-            <option value="HomeOffice">Home Office</option>
-            <option value="Outdoor">Outdoor</option>
-            <option value="Kids">Kids</option>
-            <option value="Chair">Chair</option>
-          </select>
-          <button>remove category</button>
-        </div>
-        <div class="sec">
-          <label>2 : Edit products displayed in shop page</label>
-          <input type="text" name="add" placeholder="product name" required />
-          <input type="text" name="add" placeholder="product price" required />
-          <input
-            type="text"
-            name="add"
-            placeholder="product description"
-            required
-          />
-          <input
-            type="file"
-            name="add"
-            placeholder="product description"
-            required
-          />
-          <button>add product</button>
-          <select>
-            <option value="Living">Living Room</option>
-            <option value="Bedroom">Bedroom</option>
-            <option value="Dining">Dining Room</option>
-            <option value="HomeOffice">Home Office</option>
-            <option value="Outdoor">Outdoor</option>
-            <option value="Kids">Kids</option>
-            <option value="Chair">Chair</option>
-          </select>
-          <button>remove product</button>
-        </div>
-      </div>
-      `;
-      break;
-    case "order":
-      contentHtml = `
-      <h1>fuck you </h1>
-      `;
-      break;
-    case "contact":
-      contentHtml = `
-        <h1>Contact</h1>
-        <p>Get in touch with us. We'd love to hear from you!</p>
-      `;
-      break;
-    default:
-      contentHtml = `
-        <h1>asd asd asd s</h1>
-        
-      `;
-      break;
+const slides = document.querySelector(".slides");
+const images = document.querySelectorAll(".slides img");
+
+// Limit the total number of slides to show
+const maxSlidesToShow = images.length - 3; // Exclude last 3 images
+let currentIndex = 0;
+
+// Function to update the slide position
+function showSlide(index) {
+  // Ensure the index stays within the allowed range
+  if (index < 0) {
+    currentIndex = maxSlidesToShow - 1; // Go to the last valid slide
+  } else if (index >= maxSlidesToShow) {
+    currentIndex = 0; // Loop back to the first slide
+  } else {
+    currentIndex = index;
   }
 
-  content.innerHTML = contentHtml;
+  // Move the slides container
+  // slides.style.transform = `translateX(${-currentIndex * 100}%)`;
 }
 
-/************************************************************************************************/
-
-/*  javascript for product page */
-
-var mainImg = document.getElementById("mainImg");
-var smallImg = document.querySelectorAll(".small-Img");
-
-function changeImage(imageSrc) {
-  const mainImage = document.getElementById("mainImg");
-  mainImage.src = imageSrc;
+// Manual navigation
+function navigateSlide(direction) {
+  clearInterval(autoPlayInterval); // Stop autoplay when user interacts
+  showSlide(currentIndex + direction);
+  startAutoPlay(); // Restart autoplay
 }
-/************************************************************************************************/
 
-/*  script for login and registration pages*/
+// Automatic sliding
+function startAutoPlay() {
+  autoPlayInterval = setInterval(() => {
+    showSlide(currentIndex + 1);
+  }, 3000); // Change every 3 seconds
+}
+
+// Initialize slideshow
+let autoPlayInterval;
+startAutoPlay();
+showSlide(currentIndex);
+
+const prodContainer = document.getElementById("product-container");
+
+const displayData = async () => {
+  const { result: products } = await apiSendRequest({
+    url: "https://mohamed-apis.vercel.app/product/getProduct?page=1&size=20&select=price,title,categoryId,Images",
+    method: "GET",
+  });
+
+  console.log(products);
+
+  products.forEach((product) => {
+    let prodCard = document.createElement("div");
+    prodCard.classList.add("product");
+
+    prodCard.textContent = "";
+    prodCard.innerHTML = `
+      <img src="${product.Images[0].secure_url}" alt="chair1" />
+      <div class="discription">
+        <span>${product.categoryId.name}</span>
+        <h5>${product.title}</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h4>${product.price}$</h4>
+      </div>
+      <a href="product.html?id=${product._id}" >
+        <i id="cart-${product._id}"  class="fa-solid fa-cart-shopping"></i>
+      </a>`;
+    prodContainer.appendChild(prodCard);
+  });
+};
+
+displayData();
