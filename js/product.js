@@ -3,6 +3,8 @@
 import { apiSendRequest } from "./apiFeature.js";
 
 const prodDetails = document.getElementById("prodetails");
+const params = new URLSearchParams(window.location.search);
+const productId = params.get("id");
 
 function changeImage(imageSrc) {
   const mainImage = document.getElementById("mainImg");
@@ -11,9 +13,6 @@ function changeImage(imageSrc) {
 
 const displayDetails = async () => {
   try {
-    const params = new URLSearchParams(window.location.search);
-    const productId = params.get("id");
-
     const { product } = await apiSendRequest({
       url: `https://mohamed-apis.vercel.app/product/getsingleProduct?productId=${productId}`,
       method: "GET",
@@ -62,7 +61,7 @@ const displayDetails = async () => {
         <option>Small</option>
         <option>Large</option>
       </select>
-      <input type="number" value="1" />
+      <input id="quantity" type="number" value="1" />
       <button class="normal">Add To Cart</button>
       <h4>Product Details</h4>
       <span>${product.desc}</span>`;
@@ -72,4 +71,38 @@ const displayDetails = async () => {
   }
 };
 
-displayDetails();
+document.addEventListener("DOMContentLoaded", async () => {
+  await displayDetails();
+
+  const addToCartButton = document.querySelector(".normal");
+  if (addToCartButton) {
+    addToCartButton.addEventListener("click", async (event) => {
+      const quantity = document.getElementById("quantity");
+
+      const data = {
+        productId,
+        quantity: Number(quantity.value),
+      };
+
+      const tokens = localStorage.getItem("token");
+      const { accessToken, refreshToken } = JSON.parse(tokens || "{}");
+
+      console.log({
+        data,
+        accessToken,
+        refreshToken,
+        quantity: quantity.value,
+      });
+
+      const card = await apiSendRequest({
+        url: "https://mohamed-apis.vercel.app/card/addToCart",
+        method: "POST",
+        data,
+        refreshToken: refreshToken || null,
+        accessToken: accessToken || null,
+      });
+
+      alert("product Added to ur caed success"); // Edit this with good design
+    });
+  }
+});

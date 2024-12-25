@@ -146,14 +146,18 @@ showSlide(currentIndex);
 
 const prodContainer = document.getElementById("product-container");
 
-const displayData = async () => {
+const callApiProducts = async () => {
   const { result: products } = await apiSendRequest({
-    url: "https://mohamed-apis.vercel.app/product/getProduct?page=1&size=20&select=price,title,categoryId,Images",
+    url: "https://mohamed-apis.vercel.app/product/getProduct?page=1&size=1&select=price,title,categoryId,Images",
     method: "GET",
   });
 
   console.log(products);
+  return products;
+};
 
+const displayData = async (products) => {
+  prodContainer.textContent = "";
   products.forEach((product) => {
     let prodCard = document.createElement("div");
     prodCard.classList.add("product");
@@ -179,4 +183,50 @@ const displayData = async () => {
   });
 };
 
-displayData();
+const getCategorys = async () => {
+  try {
+    const { results: categorys } = await apiSendRequest({
+      url: "https://mohamed-apis.vercel.app/category/searchCategory?page=1&size=10",
+      method: "GET",
+    });
+
+    const categoryNav = document.getElementById("category");
+
+    categorys.forEach((category) => {
+      const btncategory = document.createElement("button");
+      btncategory.id = category._id;
+      btncategory.classList.add("changeContent");
+      btncategory.textContent = category.name;
+      btncategory.value = category._id;
+      categoryNav.appendChild(btncategory);
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const changeContentBycategory = async () => {
+  const categoryNav = document.getElementById("category");
+
+  categoryNav.addEventListener("click", async (event) => {
+    if (event.target.classList.contains("changeContent")) {
+      console.log(event.target.id);
+
+      const { result: products } = await apiSendRequest({
+        url: `https://mohamed-apis.vercel.app/category/${event.target.id}/products/searchByCategoryId`,
+        method: "GET",
+      });
+
+      console.log(products);
+      displayData(products);
+    }
+  });
+};
+
+document.addEventListener("DOMContentLoaded", async (event) => {
+  const [products] = await Promise.all([callApiProducts(), getCategorys()]);
+
+  displayData(products);
+
+  await changeContentBycategory();
+});
