@@ -23,7 +23,7 @@ const getData = () => {
 // Function to validate input data
 const validateData = async ({ email, password }) => {
   // Email validation
-  const { Emailvalid, message: Emailmessage } = await checkEmail(email);
+  const { Emailvalid, message: Emailmessage } = checkEmail(email);
   if (!Emailvalid) {
     displayError(document.getElementById("email"), Emailmessage);
   } else {
@@ -89,7 +89,7 @@ const handlePostLogin = (res) => {
   console.log(res);
 
   if (res.role === "admin") {
-    window.location.href = "../html/admin.html";
+    window.location.href = "../admin/html/categorys.html";
   } else {
     window.location.href = "../index.html";
   }

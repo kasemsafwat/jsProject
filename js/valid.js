@@ -71,3 +71,5 @@ export function clearError(inputElement) {
   errorSpan.textContent = "";
   errorSpan.classList.remove("error");
 }
+
+

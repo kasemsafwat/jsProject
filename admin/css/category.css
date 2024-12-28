@@ -1,0 +1,279 @@
+:root {
+  --primary-color: #4caf50;
+  --secondary-color: #f5f5f5;
+  --text-color: #333;
+  --input-height: 30px;
+  --input-font-size: 14px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  height: 100vh;
+}
+
+.sidebar {
+  background-color: var(--primary-color);
+  padding: 20px;
+  color: white;
+}
+
+.sidebar h1 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.content {
+  padding: 20px;
+  background-color: white;
+}
+
+.content h1 {
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.form-container {
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 10px;
+  background: #4caf50;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background: #084b0a;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.form-group input {
+  width: 100%;
+  height: var(--input-height);
+  font-size: var(--input-font-size);
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: var(--input-font-size);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-group button:hover {
+  background-color: #45a049;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.small-input {
+  width: 50%;
+}
+
+/* مثال لتأثير انزلاق العنصر */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.category-added {
+  animation: slideIn 0.5s ease-out;
+}
+
+.error {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+  text-align: center;
+}
+
+.btn-submit.loading {
+  background-color: #ccc;
+  cursor: not-allowed;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url("../image/imagelogin/ZKZg.gif");
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.btn-submit.loading::after {
+  content: "";
+  position: absolute;
+  width: 1em;
+  height: 1em;
+  border: 2px solid #fff;
+  border-top: 2px solid #333;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* تنسيق الأزرار */
+button {
+  padding: 8px 12px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* زر تحديث */
+button:nth-child(1) {
+  background-color: #4caf50;
+  color: white;
+}
+
+/* زر حذف */
+button:nth-child(2) {
+  background-color: #f44336;
+  color: white;
+}
+
+/* زر عند التمرير عليه */
+button:hover {
+  opacity: 0.8;
+}
+
+/* إضافة فئة بعد إضافتها */
+.category-added {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.category-row {
+  opacity: 0; /* يبدأ العنصر مخفي */
+  transition: opacity 0.5s ease-in-out; /* تأثير تدريجي على الشفافية */
+}
+
+.category-row.animate {
+  opacity: 1; /* يظهر العنصر تدريجيًا */
+}
