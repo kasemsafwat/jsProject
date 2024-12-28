@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../image/E-commImg/icon.png" />
+    <title>Product</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/all.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <section id="header">
+      <a href="../index.html"
+        ><img
+          src="../image/E-commImg/logo-high-resolution-logo-transparent.png"
+          alt="logo"
+          class="logo"
+          width="90px"
+      /></a>
+      <div>
+        <ul id="navbar">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="../index.html#about">About</a></li>
+          <!-- <li><a href="../contact.html">Contact Us</a></li> -->
+          <li>
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+          <li>
+            <a href="wishlist.html" class="wishlist-icon">❤️</a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="cart-content">
+      <header>
+        <h1>Shopping Cart</h1>
+      </header>
+
+      <main>
+        <div id="cart-items"></div>
+        <div id="cart-total">
+          <strong>Total:</strong> <span id="total-price">0.00</span> EGP
+        </div>
+        <button id="proceed-to-checkout">Proceed to Checkout</button>
+      </main>
+    </section>
+    <footer class="section-p1">
+      <div class="lf">
+        <h4 class="gradient-text">Contact Us</h4>
+        <p class="gradient-text">
+          <strong>Address:</strong>ITI-Bani Suef Branch
+          <i class="fa-solid fa-map-location-dot"></i>
+        </p>
+        <p class="gradient-text">
+          <strong>Phone:</strong>17002<i class="fa-solid fa-phone"></i>
+        </p>
+        <p class="gradient-text">
+          <strong>Email:</strong>ITIinfo@iti.gov.eg
+          <i class="fa-regular fa-envelope"></i>
+        </p>
+      </div>
+      <div class="mf">
+        <h4 class="gradient-text">Follow Us</h4>
+        <p class="gradient-text">
+          <strong>Facebook:</strong><i class="fa-brands fa-facebook"></i>
+        </p>
+        <p class="gradient-text">
+          <strong>Twitter:</strong><i class="fa-brands fa-twitter"></i>
+        </p>
+        <p class="gradient-text">
+          <strong>Youtube:</strong><i class="fa-brands fa-youtube"></i>
+        </p>
+      </div>
+      <div class="rf">
+        <h4 class="gradient-text">Secure Payment</h4>
+        <img
+          src="../image/ProductsImages/R2.png"
+          alt=" visa,mastercard etc.."
+          width="400px"
+        />
+      </div>
+    </footer>
+    <script src="../js/cart.js"></script>
+  </body>
+</html>
