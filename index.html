@@ -11,7 +11,7 @@
   <body>
     <!-- header and navbar -->
     <section id="header" class="shopping-nav">
-      <a href="html/shop.html"
+      <a href="index.html"
         ><img
           src="image/E-commImg/logo-high-resolution-logo-transparent.png"
           alt="logo"
@@ -20,13 +20,16 @@
       /></a>
       <div>
         <ul id="navbar">
-          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
           <li><a href="html/shop.html">Shop</a></li>
           <li><a href="#about">About</a></li>
           <!-- <li><a href="contact.html">Contact Us</a></li> -->
           <li><a href="html/login.html">Login</a></li>
           <li>
-            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="html/cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+          <li>
+            <a href="html/wishlist.html" class="wishlist-icon">❤️</a>
           </li>
           <li id="theme-toggle">
             <!-- (Light Theme) -->
@@ -48,8 +51,10 @@
       <h2>Best-Deals</h2>
       <h1>On All Products</h1>
       <p>Up To 60% Off <i class="fa-solid fa-exclamation"></i></p>
-      <button>Here!!</button>
-    </section>
+      <a href="html/shop.html">
+      <button id="here">Shopping Here!!</button>
+    </a>
+  </section>
     <!-- ------------------------------------------------------------------ -->
     <section id="galary" class="section-p1">
       <div class="box">
@@ -151,5 +156,7 @@
       </div>
     </footer>
     <script src="js/script.js"></script>
+
+    </script>
   </body>
 </html>
