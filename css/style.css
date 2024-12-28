@@ -549,18 +549,62 @@ select {
   padding: 10px;
   margin: 10px;
 }
+#color-picker{
+-webkit-appearance: menulist-button; /* or default */
+appearance: menulist-button;         /* tries to restore standard look */
+background-color: initial;
+border: initial;
+padding: initial;
+width: 50px;
+height: 34px;
+}
+
+/* Container for the two categories */
 .seccontainer {
   display: flex;
-  float: left;
-  justify-content: space-evenly;
+  flex-wrap: wrap;  /* so on small screens they stack */
+  gap: 20px;        /* space between them */
+  justify-content: center; 
 }
+
+/* css for the size inputs */
+.size-choices {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap; 
+  /* So if you have many sizes, they can wrap on multiple lines */
+}
+
+.size-chip {
+  display: inline-block;
+  border: 1px solid #333;   /* Dark border */
+  border-radius: 9999px;    /* Pill shape */
+  padding: 8px 10px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+.size-chip:hover {
+  background-color: #f0f0f0;
+}
+
+/* When the corresponding checkbox is checked, style the label as "selected" */
+input[type="checkbox"]:checked + .size-chip {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* Each category (sec) block */
 .sec {
-  width: 600px;
-  float: left;
+  flex: 1 1 500px;  /* or narrower, e.g. 1 1 400px if 500 is too wide */
   border: 2px solid #ccc;
   margin: 10px;
   padding: 10px;
+  box-sizing: border-box;
 }
+
 
 /*******************************************************************************************/
 
@@ -1447,14 +1491,4 @@ tr:hover {
 .cart-content #product-details p {
   margin-bottom: 10px;
   text-align: left;
-}
-.search-bar {
-  transition: all 0.3s ease;
-  opacity: 0;
-  visibility: hidden;
-}
-
-.search-bar.show-search {
-  opacity: 1;
-  visibility: visible;
 }

@@ -3,6 +3,8 @@
 //___________________________...Toggle Theme...__________________________________________//
 
 import { apiSendRequest } from "./apiFeature.js";
+import { attachWishlistListeners } from './wishlist.js'; // for the wishlist button to work
+
 const serverUrl = "https://mohamed-apis.vercel.app";
 console.log(serverUrl);
 
@@ -93,7 +95,7 @@ const displayData = async (products) => {
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
           </div>
-          <h4>${product.priceAfterDiscount}$</h4>
+          <h4>${product.price}$</h4>
         </div>
         <a href="product.html?id=${product._id}">
           <i id="cart-${product._id}" class="fa-solid fa-cart-shopping cart"></i>
@@ -111,6 +113,7 @@ const displayData = async (products) => {
   });
 
   prodContainer.appendChild(fragment);
+  attachWishlistListeners();
 };
 
 // Fetch categories from API

@@ -1,57 +1,78 @@
-const wishlistButton = document.getElementById("wishlist-button");
+// wishlist.js
+
 const wishlistPopup = document.getElementById("wishlist-popup");
 const closePopupButton = document.getElementById("close-popup-button");
 const viewWishlistButton = document.getElementById("view-wishlist-button");
 const popupMessage = document.getElementById("wishlist-popup-message");
 
-let isInWishlist = false; // Track whether item is in wishlist
+// We'll share one popup state among all buttons
 let isPopupOpen = false; // Track whether popup is open (prevent spamming)
 
-function addtolove() {
-  if (isPopupOpen) {
-    // If popup is already open, ignore additional clicks
-    return;
-  }
+/************************************************************
+  1) Attach click listeners to all .heart-button elements
+*************************************************************/
+export function attachWishlistListeners() {
+  // Select ALL .heart-button (since we have multiple product cards)
+  const heartButtons = document.querySelectorAll(".heart-button");
 
-  // Toggle wishlist state
-  isInWishlist = !isInWishlist;
+  heartButtons.forEach((button) => {
+    // Keep local state for THIS button's wishlist status
+    let isInWishlist = false;
 
-  // Update heart icon (outline = &#9825;, filled = &#9829;)
-  const heartIconSpan = wishlistButton.querySelector(".heart-icon");
-  if (isInWishlist) {
-    heartIconSpan.innerHTML = "&#9829;"; // ♥
-    // add .filled so it displays red
-    wishlistButton.classList.add("filled");
-    popupMessage.textContent = "Added to wishlist";
-  } else {
-    heartIconSpan.innerHTML = "&#9825;"; // ♡
-    // remove .filled so it displays gray
-    wishlistButton.classList.remove("filled");
-    popupMessage.textContent = "Removed from wishlist";
-  }
+    // Add click listener
+    button.addEventListener("click", function () {
+      // If popup is already open, ignore clicks
+      if (isPopupOpen) return;
 
-  // Show popup
-  wishlistPopup.style.display = "block";
-  isPopupOpen = true;
+      // Toggle the "isInWishlist" for this particular button
+      isInWishlist = !isInWishlist;
 
-  // Disable button while popup is open
-  wishlistButton.disabled = true;
+      // The heart icon <span> inside THIS button
+      const heartIconSpan = this.querySelector(".heart-icon");
+
+      if (isInWishlist) {
+        heartIconSpan.innerHTML = "&#9829;"; // ♥
+        // Add .filled so it displays red (CSS sets .heart-button.filled { color: red; })
+        this.classList.add("filled");
+        popupMessage.textContent = "Added to wishlist";
+      } else {
+        heartIconSpan.innerHTML = "&#9825;"; // ♡
+        this.classList.remove("filled");
+        popupMessage.textContent = "Removed from wishlist";
+      }
+
+      // Show popup
+      wishlistPopup.style.display = "block";
+      isPopupOpen = true;
+
+      // Disable THIS button while the popup is open
+      this.disabled = true;
+    });
+  });
 }
+
+/**************************************
+  2) Popup “Close” and “View Wishlist”
+**************************************/
 closePopupButton.addEventListener("click", function () {
-  // Close popup
+  // Hide popup
   wishlistPopup.style.display = "none";
   isPopupOpen = false;
 
-  // Re-enable heart button
-  wishlistButton.disabled = false;
+  // Re-enable ALL heart buttons
+  const heartButtons = document.querySelectorAll(".heart-button");
+  heartButtons.forEach((btn) => (btn.disabled = false));
 });
 
 viewWishlistButton.addEventListener("click", function () {
   // Example: navigate to wishlist page
   window.location.href = "wishlist.html";
 
-  // Hide popup, re-enable heart button
+  // Hide popup
   wishlistPopup.style.display = "none";
   isPopupOpen = false;
-  wishlistButton.disabled = false;
+
+  // Re-enable all heart buttons
+  const heartButtons = document.querySelectorAll(".heart-button");
+  heartButtons.forEach((btn) => (btn.disabled = false));
 });
