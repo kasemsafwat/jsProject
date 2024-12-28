@@ -51,6 +51,7 @@ const displayDetails = async () => {
     singleProDetails.classList.add("single-pro-details");
 
     singleProDetails.innerHTML = `
+    <div class="details">
       <h6>${product.categoryId.name}</h6>
       <h4>${product.title}</h4>
       <h2>$${product.price}</h2>
@@ -61,10 +62,12 @@ const displayDetails = async () => {
         <option>Small</option>
         <option>Large</option>
       </select>
-      <input id="quantity" type="number" value="1" />
+      <input type="number" value="1" />
       <button class="normal">Add To Cart</button>
+      </a>
       <h4>Product Details</h4>
-      <span>${product.desc}</span>`;
+      
+      <span>${product.desc}</span></div>`;
     prodDetails.appendChild(singleProDetails);
   } catch (error) {
     console.error("Error fetching product details:", error);

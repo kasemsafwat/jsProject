@@ -3,78 +3,90 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../FontAwesome/all.min.css" />
-    <link rel="stylesheet" href="../css/login-registration.css" />
-    <title>registration Page</title>
+    <link rel="icon" type="image/x-icon" href="../image/E-commImg/icon.png" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>Document</title>
   </head>
   <body>
-    <div class="login-bg">
+    <section class="reg">
       <div class="container">
-        <div class="left-section"></div>
-        <div class="right-section">
-          <img
-            src="../image/E-commImg/AdobeStock_241431868-1-scaled-1 (1).jpeg"
-          />
-          <br />
-          <h1>sign up</h1>
-          <h2>Welcome to our website</h2>
-          <form method="post">
-            <div class="input-group">
-              <label for="name">Name</label>
-              <input
-                type="name"
-                id="name"
-                placeholder="Enter Your name"
-                required
-              />
-              <span></span>
+        <img src="../image/imagelogin/AdobeStock.jpeg" alt="" />
+        <div class="register">
+          <h1>Register</h1>
+          <!-- <h2>Welcome to our website</h2> -->
+          <form action="" method="post">
+            <div class="input-group flname">
+              <div class="firstName">
+                <label for="firstName">First Name:</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="Enter Your First Name"
+                  id="firstName"
+                />
+              </div>
+              <div class="lastName">
+                <label for="lastName">Last Name:</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Enter Your Last Name"
+                  id="lastName"
+                />
+              </div>
             </div>
             <div class="input-group">
-              <label for="email">Email</label>
+              <label for="username">user name:</label>
+              <input
+                type="text"
+                name="username"
+                placeholder="Enter Your user name:"
+                id="username"
+              />
+            </div>
+            <div class="input-group">
+              <label for="email">Email:</label>
               <input
                 type="email"
+                placeholder="Enter Your email"
+                name="email"
                 id="email"
-                placeholder="Enter Your Email"
-                required
               />
-              <span></span>
+            </div>
+            <div class="input-group genderType">
+              <label for="gender">Gender</label>
+              <select name="gender" id="gender">
+                <option value="male">Male</option>
+                <option value="female">female</option>
+              </select>
             </div>
             <div class="input-group">
-              <label for="password">Password</label>
+              <label for="password">Password:</label>
               <input
-                type="password"
-                id="password"
                 placeholder="Enter Your Password"
-                required
+                type="password"
+                name="password"
+                id="password"
               />
-              <span></span>
             </div>
             <div class="input-group">
-              <label for="repeatpassword">repeat Password</label>
+              <label for="cpassword">Confirm Password:</label>
               <input
+                placeholder="Enter Your Confirm Password"
                 type="password"
-                id="repeatpassword"
-                placeholder="repeat Your Password"
-                required
+                name="cpassword"
+                id="cpassword"
               />
-              <span></span>
             </div>
-            <button type="button" id="signup" class="btn">sign up</button>
-            <span></span>
+            <button value="Register" class="btn" id="register">Register</button>
           </form>
-
           <div class="or">or</div>
-
-          <p class="register">
-            sign in with
-            <a href="./register.html"
-              >Google <i class="fa-brands fa-google"></i
-            ></a>
+          <p class="login">
+            Already Have Account? <a href="./login.html">Login</a>
           </p>
         </div>
       </div>
-    </div>
-    <script src="../FontAwesome/all.min.js"></script>
-    <script type="module" src="../js/login.js"></script>
+    </section>
   </body>
 </html>

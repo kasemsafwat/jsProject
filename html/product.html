@@ -6,21 +6,15 @@
     <link rel="icon" type="image/x-icon" href="../image/E-commImg/icon.png" />
     <title>Product</title>
     <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
       rel="stylesheet"
-      href="../css/style.css"
-      <link
-      rel="stylesheet"
-      href="../shop/shop.css"
     />
-    <link rel="stylesheet" href="../css/product.css" />
-    <link
-      rel="stylesheet"
-      href="../FontAwesome/fontawesome-free-6.7.1-web/css/all.css"
-    />
+    <link rel="stylesheet" href="../css/all.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
     <section id="header">
-      <a href="#"
+      <a href="../index.html"
         ><img
           src="../image/E-commImg/logo-high-resolution-logo-transparent.png"
           alt="logo"
@@ -36,12 +30,17 @@
           <li>
             <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
           </li>
+          <li>
+            <a href="wishlist.html" class="wishlist-icon">❤️</a>
+          </li>
         </ul>
       </div>
     </section>
 
-    <section id="prodetails" class="section-p1">
-      <div class="single-pro-details"></div>
+    <section class="product-details">
+      <section id="prodetails" class="section-p1">
+        <div class="single-pro-details"></div>
+      </section>
     </section>
 
     <section id="products" class="section-p1">
@@ -65,7 +64,9 @@
             </div>
             <h4>25$</h4>
           </div>
-          <a href="#"><i id="cart" class="fa-solid fa-cart-shopping"></i></a>
+          <a href="#"
+            ><i id="cart" class="fa-solid fa-cart-shopping cart"></i
+          ></a>
         </div>
         <div
           class="product"
@@ -84,7 +85,9 @@
             </div>
             <h4>25$</h4>
           </div>
-          <a href="#"><i id="cart" class="fa-solid fa-cart-shopping"></i></a>
+          <a href="#"
+            ><i id="cart" class="fa-solid fa-cart-shopping cart"></i
+          ></a>
         </div>
         <div
           class="product"
@@ -103,7 +106,9 @@
             </div>
             <h4>25$</h4>
           </div>
-          <a href="#"><i id="cart" class="fa-solid fa-cart-shopping"></i></a>
+          <a href="#"
+            ><i id="cart" class="fa-solid fa-cart-shopping cart"></i
+          ></a>
         </div>
         <div
           class="product"
@@ -122,7 +127,9 @@
             </div>
             <h4>25$</h4>
           </div>
-          <a href="#"><i id="cart" class="fa-solid fa-cart-shopping"></i></a>
+          <a href="#"
+            ><i id="cart" class="fa-solid fa-cart-shopping cart"></i
+          ></a>
         </div>
       </div>
     </section>
@@ -164,5 +171,6 @@
       </div>
     </footer>
     <script type="module" src="../js/product.js"></script>
+    <script src="../js/wishlist.js"></script>
   </body>
 </html>

@@ -87,6 +87,8 @@ navbarLinks.forEach((link) => {
 
 //____________________________.....NAVBAR.....____________________________//
 
+/*************************************************************************/
+
 //ـــــــــــــــــــــــــ...... javascript for shopping page ..... ـــــــــــــــــــــــ//
 // Function to change content dynamically based on button click
 function changeContent(section) {
@@ -100,49 +102,6 @@ function changeContent(section) {
   const activeSection = document.getElementById(section);
   activeSection.classList.add("active");
 }
-
-//ــــــــــــــــــــــــــــــــ..... slideshow image ....ــــــــــــــــــــــــــــــــــــ//
-
-const slides = document.querySelector(".slides");
-const images = document.querySelectorAll(".slides img");
-
-// Limit the total number of slides to show
-const maxSlidesToShow = images.length - 3; // Exclude last 3 images
-let currentIndex = 0;
-
-// Function to update the slide position
-function showSlide(index) {
-  // Ensure the index stays within the allowed range
-  if (index < 0) {
-    currentIndex = maxSlidesToShow - 1; // Go to the last valid slide
-  } else if (index >= maxSlidesToShow) {
-    currentIndex = 0; // Loop back to the first slide
-  } else {
-    currentIndex = index;
-  }
-
-  // Move the slides container
-  // slides.style.transform = `translateX(${-currentIndex * 100}%)`;
-}
-
-// Manual navigation
-function navigateSlide(direction) {
-  clearInterval(autoPlayInterval); // Stop autoplay when user interacts
-  showSlide(currentIndex + direction);
-  startAutoPlay(); // Restart autoplay
-}
-
-// Automatic sliding
-function startAutoPlay() {
-  autoPlayInterval = setInterval(() => {
-    showSlide(currentIndex + 1);
-  }, 3000); // Change every 3 seconds
-}
-
-// Initialize slideshow
-let autoPlayInterval;
-startAutoPlay();
-showSlide(currentIndex);
 
 const prodContainer = document.getElementById("product-container");
 
@@ -158,8 +117,10 @@ const callApiProducts = async () => {
 
 const displayData = async (products) => {
   prodContainer.textContent = "";
+
   products.forEach((product) => {
     let prodCard = document.createElement("div");
+
     prodCard.classList.add("product");
 
     prodCard.textContent = "";
@@ -177,8 +138,11 @@ const displayData = async (products) => {
         <h4>${product.price}$</h4>
       </div>
       <a href="product.html?id=${product._id}" >
-        <i id="cart-${product._id}"  class="fa-solid fa-cart-shopping"></i>
-      </a>`;
+        <i  id="cart-${product._id}"  class="fa-solid fa-cart-shopping cart"></i>
+      </a>
+      <button id="wishlist-button" class="heart-button" onclick="addtolove()"><span class="heart-icon">&#9825;</span></button>
+      
+      `;
     prodContainer.appendChild(prodCard);
   });
 };
@@ -230,3 +194,66 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 
   await changeContentBycategory();
 });
+
+/************************************************************************************* */
+
+/* ======================= search section ========================== */
+
+const toggleSearch = (search, button) => {
+  const searchBar = document.getElementById(search),
+    searchButton = document.getElementById(button);
+
+  searchButton.addEventListener("click", () => {
+    // We add the show-search class, so that the search ba
+    searchBar.classList.toggle("show-search");
+  });
+};
+toggleSearch("search-bar", "search-button-id");
+
+/*********************************************************************************************/
+
+/***************************************************************************************************/
+
+//ــــــــــــــــــــــــــــــــ..... slideshow image ....ــــــــــــــــــــــــــــــــــــ//
+
+const slides = document.querySelector(".slides");
+const images = document.querySelectorAll(".slides img");
+
+// Limit the total number of slides to show
+const maxSlidesToShow = images.length - 3; // Exclude last 3 images
+let currentIndex = 0;
+
+// Function to update the slide position
+function showSlide(index) {
+  // Ensure the index stays within the allowed range
+  if (index < 0) {
+    currentIndex = maxSlidesToShow - 1; // Go to the last valid slide
+  } else if (index >= maxSlidesToShow) {
+    currentIndex = 0; // Loop back to the first slide
+  } else {
+    currentIndex = index;
+  }
+
+  // Move the slides container
+  // slides.style.transform = `translateX(${-currentIndex * 100}%)`;
+}
+
+// Manual navigation
+function navigateSlide(direction) {
+  clearInterval(autoPlayInterval); // Stop autoplay when user interacts
+  showSlide(currentIndex + direction);
+  startAutoPlay(); // Restart autoplay
+}
+
+// Automatic sliding
+function startAutoPlay() {
+  autoPlayInterval = setInterval(() => {
+    showSlide(currentIndex + 1);
+  }, 3000); // Change every 3 seconds
+}
+
+// Initialize slideshow
+let autoPlayInterval;
+startAutoPlay();
+showSlide(currentIndex);
+// Slideshow Functionality
