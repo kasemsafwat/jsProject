@@ -24,17 +24,18 @@
           width="90px"
       /></a>
       <div class="container">
-        <form
-          action="https://www.google.com/search"
-          class="search"
-          id="search-bar"
-        >
-          <input type="search" placeholder="Search..." class="search-input" />
-          <div class="search-button" id="search-button-id">
+        <div class="search" id="search-bar">
+          <input
+            type="search"
+            placeholder="Search..."
+            id="search-input"
+            class="search-input"
+          />
+          <button class="search-button" id="search-button-id">
             <i class="ri-search-2-line search-icon"></i>
             <i class="ri-close-line search-close"></i>
-          </div>
-        </form>
+          </button>
+        </div>
       </div>
       <div>
         <ul id="navbar">
@@ -62,7 +63,7 @@
       <div class="content">
         <div id="Living" class="section active">
           <section id="products" class="section-p1">
-            <h2><u>Our Living Room</u></h2>
+            <h2><u id="titleCategory">Our New Products</u></h2>
             <p>Best Collection With New Modern Designs</p>
             <div class="product-container" id="product-container">
               <!-- #  # CONTENT Cards here -->

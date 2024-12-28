@@ -1448,3 +1448,13 @@ tr:hover {
   margin-bottom: 10px;
   text-align: left;
 }
+.search-bar {
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.search-bar.show-search {
+  opacity: 1;
+  visibility: visible;
+}

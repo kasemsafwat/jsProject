@@ -1,4 +1,4 @@
-export const checkEmail = async (email) => {
+export const checkEmail = (email) => {
   const regexEmail = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.(com|gov|net)$/;
   return !regexEmail.test(email)
     ? { Emailvalid: false, message: "❌ Invaild Email" }
@@ -23,6 +23,34 @@ export const checkPassword = (password) => {
   return errors.length > 0
     ? { valid: false, message: errors.join(" ") }
     : { valid: true, message: "✅ Strong Password" };
+};
+
+export const checkName = (name) => {
+  const regexName = /^[A-Za-z]{3,15}$/;
+  return !regexName.test(name)
+    ? { namevalid: false, message: "❌ Invaild  First Name or Last Name" }
+    : { namevalid: true, message: " ✅ Valid" };
+};
+
+export const checkUserName = (name) => {
+  const regexName = /^[A-Za-z0-9_#.]{3,25}$/;
+  return !regexName.test(name)
+    ? { userNamevalid: false, message: "❌ Invaild user name" }
+    : { userNamevalid: true, message: " ✅ Valid" };
+};
+export const checkGender = (gender) => {
+  return gender !== "male" || gender !== "female"
+    ? { genderVaild: false, message: "❌ Invaild Gender" }
+    : { genderVaild: true, message: " ✅ Valid Gender" };
+};
+
+export const checkCPassword = (password, cpassword) => {
+  return password != cpassword
+    ? {
+        cpasswordValid: false,
+        message: "❌ Password and Confirm Password Not Matched.",
+      }
+    : { cpasswordValid: true, message: " ✅ Valid Confirm Password." };
 };
 
 export const customeError = async (message, element) => {
