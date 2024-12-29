@@ -1,7 +1,49 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const cartItems = document.querySelectorAll(".cart-item");
-  const deliveryButtons = document.querySelectorAll(".delivery-button");
+import { apiSendRequest } from "./apiFeature.js";
+const serverUrl = "https://mohamed-apis.vercel.app";
+console.log(serverUrl);
+const cartItems = document.querySelectorAll(".cart-item");
+const deliveryButtons = document.querySelectorAll(".delivery-button");
 
+const { accessToken, refreshToken } = JSON.parse(localStorage.getItem("token"));
+console.log({ accessToken, refreshToken });
+
+if (!accessToken || !refreshToken) {
+  console.error("Please Login first");
+  cartItems.textContent = "PLease Login first";
+  window.location.href = "../html/shop.html";
+}
+
+function updateTotals() {
+  const subtotalPriceElement = document.querySelector(".subtotal-price");
+  const deliveryPriceElement = document.querySelector(".delivery-price");
+  const taxPriceElement = document.querySelector(".tax-price");
+  const totalPriceElement = document.querySelector(".total-price");
+  const discountAmountElement = document.querySelector(".discount-amount");
+
+  let subtotal = 0;
+  document.querySelectorAll(".cart-item").forEach((item) => {
+    const itemPrice = parseFloat(
+      item.querySelector(".total-item-price").textContent
+    );
+    subtotal += itemPrice;
+  });
+  subtotalPriceElement.textContent = `$${subtotal.toFixed(2)}`;
+  let deliveryCost = 0;
+  const activeDelivery = document.querySelector(".delivery-button.active");
+  if (activeDelivery.textContent.trim() == "Express: $9.99") {
+    deliveryCost = 9.99;
+  }
+
+  deliveryPriceElement.textContent = `$${deliveryCost.toFixed(2)}`;
+  const taxAmount = 14;
+  taxPriceElement.textContent = `+$${taxAmount.toFixed(2)}`;
+  const discount = subtotal * 0.2;
+  discountAmountElement.textContent = `(20%) - $${discount.toFixed(2)}`;
+  const total = (subtotal + deliveryCost + taxAmount - discount).toFixed(2);
+  totalPriceElement.textContent = `$${total}`;
+}
+
+const getcartItems = () => {
   cartItems.forEach((item) => {
     const quantityInput = item.querySelector(".item-quantity");
     const plusButton = item.querySelector(".plus-qty");
@@ -36,7 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
       updateTotals();
     });
   });
+};
 
+const getDeliveryBtns = () => {
   deliveryButtons.forEach((button) => {
     button.addEventListener("click", () => {
       deliveryButtons.forEach((btn) => btn.classList.remove("active"));
@@ -44,35 +88,128 @@ document.addEventListener("DOMContentLoaded", function () {
       updateTotals();
     });
   });
-  function updateTotals() {
-    const subtotalPriceElement = document.querySelector(".subtotal-price");
-    const deliveryPriceElement = document.querySelector(".delivery-price");
-    const taxPriceElement = document.querySelector(".tax-price");
-    const totalPriceElement = document.querySelector(".total-price");
-    const discountAmountElement = document.querySelector(".discount-amount");
+};
 
-    let subtotal = 0;
-    document.querySelectorAll(".cart-item").forEach((item) => {
-      const itemPrice = parseFloat(
-        item.querySelector(".total-item-price").textContent
-      );
-      subtotal += itemPrice;
+//my jobs in it
+const getCartInfo = async () => {
+  const { card: cart } = await apiSendRequest({
+    url: `${serverUrl}/card/getCardInfo`,
+    method: "GET",
+    accessToken,
+    refreshToken,
+  });
+
+  console.log(cart);
+  return cart;
+};
+
+const deleteFromCart = async (id) => {
+  try {
+    console.log("Deleting product with ID:", id);
+
+    const result = await apiSendRequest({
+      url: `${serverUrl}/card/deleteFromCart?productId=${id}`,
+      method: "PATCH",
+      accessToken,
+      refreshToken,
     });
-    subtotalPriceElement.textContent = `$${subtotal.toFixed(2)}`;
-    let deliveryCost = 0;
-    const activeDelivery = document.querySelector(".delivery-button.active");
-    if (activeDelivery.textContent.trim() == "Express: $9.99") {
-      deliveryCost = 9.99;
+
+    if (true) {
+      const itemToRemove = document.querySelector(
+        `.cart-item[data-item-id="${id}"]`
+      );
+      if (itemToRemove) {
+        itemToRemove.remove();
+      }
+
+      alert("deleted success");
+    } else {
+      alert("Error when delete product");
     }
-
-    deliveryPriceElement.textContent = `$${deliveryCost.toFixed(2)}`;
-    const taxAmount = 14;
-    taxPriceElement.textContent = `+$${taxAmount.toFixed(2)}`;
-    const discount = subtotal * 0.2;
-    discountAmountElement.textContent = `(20%) - $${discount.toFixed(2)}`;
-    const total = (subtotal + deliveryCost + taxAmount - discount).toFixed(2);
-    totalPriceElement.textContent = `$${total}`;
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    alert("error somthing wrong");
   }
+};
 
+const displayData = (cart) => {
+  const cardContainer = document.getElementById("cardContainer");
+  console.log(cardContainer);
+  console.log(cart.products);
+
+  cardContainer.innerHTML = cart?.products
+    .map((product) => {
+      const {
+        productId: { title, price, Images, size, color },
+        quantity,
+      } = product;
+
+      return `<div class="cart-item" data-item-id="${product._id}">
+            <img
+              src="${Images[0]?.secure_url || "#"}"
+              alt="${title}"
+              class="item-image"
+            />
+            <div class="item-details">
+              <h3 class="item-name">${title}</h3>
+              <p class="item-price">${price} EGP</p>
+              <p class="in-stock">In Stock</p>
+              <div class="item-options">
+                <select class="item-size">
+                  ${size.map((s) => `<option>${s}</option>`).join("")}
+                </select>
+                <select class="item-color">
+                  ${color.map((c) => `<option>${c}</option>`).join("")}
+                </select>
+                <div class="quantity-control">
+                  <button class="minus-qty" data-action="minus">-</button>
+                  <input type="text" class="item-quantity" value="${quantity}" readonly />
+                  <button class="plus-qty" data-action="plus">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="item-summary">
+              <span class="total-item-price">${(price * quantity).toFixed(
+                2
+              )} EGP</span>
+            </div>
+            <div class="item-buttons">
+              <button data-id="${
+                product.productId._id
+              }" class="cart-item-button-delete">
+  <i class="fa-solid fa-trash" id="trash"></i>
+  Delete
+</button>
+            </div>
+          </div>`;
+    })
+    .join("");
+
+  document.getElementById("subtotal-price").textContent = `${cart.subTotal}$`;
+  document.getElementById("total-price").textContent = `${cart.subTotal + 14}$`;
+};
+
+document.addEventListener("DOMContentLoaded", async function () {
+  getcartItems();
   updateTotals();
+  getDeliveryBtns();
+
+  //get card Info by send request to api
+  const cart = await getCartInfo();
+
+  //display data
+  displayData(cart);
+
+  // Bind events after rendering
+  const deleteButtons = document.querySelectorAll(".cart-item-button-delete");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const id = button.getAttribute("data-id");
+      await deleteFromCart(id);
+    });
+  });
+});
+
+document.getElementById("continue-shopping").addEventListener("click", () => {
+  window.location.href = "../html/shop.html";
 });
