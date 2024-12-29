@@ -11,6 +11,7 @@
     />
     <link rel="stylesheet" href="../css/all.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
   </head>
   <body>
     <section id="header">
@@ -37,19 +38,229 @@
       </div>
     </section>
 
-    <section class="cart-content">
-      <header>
-        <h1>Shopping Cart</h1>
-      </header>
-
-      <main>
-        <div id="cart-items"></div>
-        <div id="cart-total">
-          <strong>Total:</strong> <span id="total-price">0.00</span> EGP
+    <div class="cart-container">
+      <div class="cart">
+        <h2>Cart</h2>
+        <div class="cart-items">
+          <div class="cart-item" data-item-id="1">
+            <img
+              src="https://via.placeholder.com/80x80/00008B/FFFFFF?text=T-shirt"
+              alt="T-shirt"
+              class="item-image"
+            />
+            <div class="item-details">
+              <h3 class="item-name">Relaxed Fit T-shirt</h3>
+              <p class="item-price">12.99</p>
+              <p class="in-stock">In Stock</p>
+              <div class="item-options">
+                <select class="item-size">
+                  <option>XL</option>
+                  <option>XXL</option>
+                </select>
+                <select class="item-color">
+                  <option>blue</option>
+                  <option>red</option>
+                </select>
+                <div class="quantity-control">
+                  <button class="minus-qty" data-action="minus">-</button>
+                  <input type="text" class="item-quantity" value="5" readonly />
+                  <button class="plus-qty" data-action="plus">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="item-summary">
+              <span class="total-item-price">64.95</span>
+            </div>
+            <div class="item-buttons">
+              <button class="cart-item-button">
+                <i class="fa-solid fa-heart" id="heart"></i>
+                Save
+              </button>
+              <button class="cart-item-button">
+                <i class="fa-solid fa-trash" id="trash"></i>
+                Delete
+              </button>
+            </div>
+          </div>
+          <div class="cart-item" data-item-id="2">
+            <img
+              src="https://via.placeholder.com/80x80/DEB887/000000?text=Cap"
+              alt="Cap"
+              class="item-image"
+            />
+            <div class="item-details">
+              <h3 class="item-name">Nylon Sports Cap</h3>
+              <p class="item-price">15.36</p>
+              <p class="in-stock">In Stock</p>
+              <div class="item-options">
+                <select class="item-size">
+                  <option>XL</option>
+                  <option>XXL</option>
+                </select>
+                <select class="item-color">
+                  <option>blue</option>
+                  <option>red</option>
+                </select>
+                <div class="quantity-control">
+                  <button class="minus-qty" data-action="minus">-</button>
+                  <input type="text" class="item-quantity" value="3" readonly />
+                  <button class="plus-qty" data-action="plus">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="item-summary">
+              <span class="total-item-price">64.95</span>
+            </div>
+            <div class="item-buttons">
+              <button class="cart-item-button">
+                <i class="fa-solid fa-heart" id="heart"></i>
+                Save
+              </button>
+              <button class="cart-item-button">
+                <i class="fa-solid fa-trash" id="trash"></i>
+                Delete
+              </button>
+            </div>
+          </div>
+          <div class="cart-item" data-item-id="3">
+            <img
+              src="https://via.placeholder.com/80x80/ADFF2F/000000?text=Sneakers"
+              alt="Sneakers"
+              class="item-image"
+            />
+            <div class="item-details">
+              <h3 class="item-name">Sneakers</h3>
+              <p class="item-price">12.99</p>
+              <p class="in-stock">In Stock</p>
+              <div class="item-options">
+                <select class="item-size">
+                  <option>XL</option>
+                  <option>XXL</option>
+                </select>
+                <select class="item-color">
+                  <option>blue</option>
+                  <option>red</option>
+                </select>
+                <div class="quantity-control">
+                  <button class="minus-qty" data-action="minus">-</button>
+                  <input type="text" class="item-quantity" value="4" readonly />
+                  <button class="plus-qty" data-action="plus">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="item-summary">
+              <span class="total-item-price">64.95</span>
+            </div>
+            <div class="item-buttons">
+              <button class="cart-item-button">
+                <i class="fa-solid fa-heart" id="heart"></i>
+                Save
+              </button>
+              <button class="cart-item-button">
+                <i class="fa-solid fa-trash" id="trash"></i>
+                Delete
+              </button>
+            </div>
+          </div>
+          <div class="cart-item" data-item-id="4">
+            <img
+              src="https://via.placeholder.com/80x80/000000/FFFFFF?text=Cap"
+              alt="Cap"
+              class="item-image"
+            />
+            <div class="item-details">
+              <h3 class="item-name">Cap</h3>
+              <p class="item-price">12.99</p>
+              <p class="in-stock">In Stock</p>
+              <div class="item-options">
+                <select class="item-size">
+                  <option>XL</option>
+                  <option>XXL</option>
+                </select>
+                <select class="item-color">
+                  <option>blue</option>
+                  <option>red</option>
+                </select>
+                <div class="quantity-control">
+                  <button class="minus-qty" data-action="minus">-</button>
+                  <input type="text" class="item-quantity" value="8" readonly />
+                  <button class="plus-qty" data-action="plus">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="item-summary">
+              <span class="total-item-price">64.95</span>
+            </div>
+            <div class="item-buttons">
+              <button class="cart-item-button">
+                <i class="fa-solid fa-heart" id="heart"></i>
+                Save
+              </button>
+              <button class="cart-item-button">
+                <i class="fa-solid fa-trash" id="trash"></i>
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
-        <button id="proceed-to-checkout">Proceed to Checkout</button>
-      </main>
-    </section>
+      </div>
+
+      <div class="delivery-summary">
+        <h2>Delivery</h2>
+        <div class="delivery-options">
+          <button class="delivery-button active">Free</button>
+          <button class="delivery-button">Express: $9.99</button>
+        </div>
+        <p class="delivery-date">Delivery date: june 24, 2022</p>
+
+        <div class="promocode-section">
+          <input type="text" class="promocode-input" placeholder="Promocode" />
+          <button class="promocode-apply">Apply</button>
+          <p class="discount-details">20% off discount</p>
+        </div>
+
+        <div class="order-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span class="subtotal-price">$0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Discount</span>
+            <span class="discount-amount">(20%) - $16.19</span>
+          </div>
+          <div class="summary-row">
+            <span
+              >Delivery<span
+                class="tooltip"
+                data-tooltip-text="This is an example delivery tooltip."
+                >?</span
+              ></span
+            >
+            <span class="delivery-price">$0.00</span>
+          </div>
+          <div class="summary-row">
+            <span
+              >Tax<span
+                class="tooltip"
+                data-tooltip-text="This is an example tax tooltip."
+                >?</span
+              ></span
+            >
+            <span class="tax-price">+$14.00</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span class="total-price">$78.76</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="proceed-checkout">Checkout</button>
+          <button class="continue-shopping">Continue Shopping</button>
+        </div>
+      </div>
+    </div>
+
     <footer class="section-p1">
       <div class="lf">
         <h4 class="gradient-text">Contact Us</h4>
