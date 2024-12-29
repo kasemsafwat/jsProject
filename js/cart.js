@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const quantityInput = item.querySelector(".item-quantity");
     const plusButton = item.querySelector(".plus-qty");
     const minusButton = item.querySelector(".minus-qty");
-    const deleteButton = item.querySelector(".delete-item");
+    const deleteButton = item.querySelector(".cart-item-button-delete");
 
     const itemPrice = parseFloat(item.querySelector(".item-price").textContent);
     const totalItemPriceElement = item.querySelector(".total-item-price");
