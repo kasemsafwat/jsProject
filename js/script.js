@@ -3,12 +3,12 @@
 //___________________________...Toggle Theme...__________________________________________//
 
 import { apiSendRequest } from "./apiFeature.js";
-import { attachWishlistListeners } from './wishlist.js'; // for the wishlist button to work
+import { attachWishlistListeners } from "./wishlist.js"; // for the wishlist button to work
 
 const serverUrl = "https://mohamed-apis.vercel.app";
 console.log(serverUrl);
 
-// Get the elements for theme toggle
+/* // Get the elements for theme toggle
 const themeToggleButton = document.getElementById("theme-toggle");
 const sunIcon = document.getElementById("sun-icon");
 const moonIcon = document.getElementById("moon-icon");
@@ -34,7 +34,13 @@ if (themeToggleButton) {
       localStorage.setItem("theme", "light");
     }
   });
-}
+}*/
+
+//...................................Navbar.....................................//
+
+
+
+//...................................Navbar.....................................//
 
 //___________________________...Search Animation...__________________________________________//
 

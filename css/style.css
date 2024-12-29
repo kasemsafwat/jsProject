@@ -549,37 +549,37 @@ select {
   padding: 10px;
   margin: 10px;
 }
-#color-picker{
--webkit-appearance: menulist-button; /* or default */
-appearance: menulist-button;         /* tries to restore standard look */
-background-color: initial;
-border: initial;
-padding: initial;
-width: 50px;
-height: 34px;
+#color-picker {
+  -webkit-appearance: menulist-button; /* or default */
+  appearance: menulist-button; /* tries to restore standard look */
+  background-color: initial;
+  border: initial;
+  padding: initial;
+  width: 50px;
+  height: 34px;
 }
 
 /* Container for the two categories */
 .seccontainer {
   display: flex;
-  flex-wrap: wrap;  /* so on small screens they stack */
-  gap: 20px;        /* space between them */
-  justify-content: center; 
+  flex-wrap: wrap; /* so on small screens they stack */
+  gap: 20px; /* space between them */
+  justify-content: center;
 }
 
 /* css for the size inputs */
 .size-choices {
   display: flex;
   gap: 0.5rem;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   /* So if you have many sizes, they can wrap on multiple lines */
 }
 
 .size-chip {
   display: inline-block;
-  border: 1px solid #333;   /* Dark border */
-  border-radius: 9999px;    /* Pill shape */
-  padding: 8px 10px; 
+  border: 1px solid #333; /* Dark border */
+  border-radius: 9999px; /* Pill shape */
+  padding: 8px 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -598,13 +598,12 @@ input[type="checkbox"]:checked + .size-chip {
 
 /* Each category (sec) block */
 .sec {
-  flex: 1 1 500px;  /* or narrower, e.g. 1 1 400px if 500 is too wide */
+  flex: 1 1 500px; /* or narrower, e.g. 1 1 400px if 500 is too wide */
   border: 2px solid #ccc;
   margin: 10px;
   padding: 10px;
   box-sizing: border-box;
 }
-
 
 /*******************************************************************************************/
 
@@ -1022,9 +1021,9 @@ button.loading::after {
 .search-button {
   /* Note */
   width: 100px;
-  height: 30px;
+  height: 100px;
   background-color: var(--dark-color);
-  border-radius: 10%;
+  border-radius: 9999px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1146,9 +1145,9 @@ button.loading::after {
 .search-button {
   /* Note */
   width: 100px;
-  height: 30px;
+  height: 100px;
   background-color: var(--dark-color);
-  border-radius: 10%;
+  border-radius: 99999px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1173,7 +1172,7 @@ button.loading::after {
 .search-close {
   position: absolute;
   right: 35px;
-  top: 2px;
+  top: 30px;
 }
 
 .search-close {
@@ -1226,7 +1225,7 @@ button.loading::after {
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 45px;
   color: #999; /* Gray color for default outline heart */
   transition: color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
   outline: none;
@@ -1273,7 +1272,7 @@ button.loading::after {
 }
 
 #view-wishlist-button {
-  background-color: #e83e60;
+  background-color: rgb(70, 70, 70);
   color: rgb(255, 255, 255);
   padding: 10px 20px;
   border: none;
@@ -1287,7 +1286,7 @@ button.loading::after {
 }
 
 .close-popup {
-  background-color: #e83e60;
+  background-color: rgb(70, 70, 70);
   color: rgb(255, 255, 255);
   border: none;
   padding: 10px;
