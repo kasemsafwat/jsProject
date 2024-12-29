@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Products Page</title>
+    <link rel="stylesheet" href="../css/products.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h1>Dashboard</h1>
+        <ul>
+          <li><a href="./categorys.html">Categories</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="./orders.html">Orders</a></li>
+        </ul>
+      </div>
+
+      <!-- Main Form -->
+      <div class="form-container">
+        <h1>Manage Products</h1>
+        <form id="productForm">
+          <!-- Product Name & Price in the same row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label>Product Name:</label>
+              <input
+                type="text"
+                name="title"
+                placeholder="Product Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Price:</label>
+              <input
+                type="text"
+                name="price"
+                placeholder="Product Price"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Product Description in a single row -->
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label>Description:</label>
+              <textarea
+                name="desc"
+                rows="4"
+                placeholder="Product Description"
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Stock & Discount in the same row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label>Stock:</label>
+              <input
+                type="number"
+                name="stock"
+                min="1"
+                placeholder="Available Stock"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Applied Discount (0-100):</label>
+              <input
+                type="number"
+                name="appliedDiscount"
+                min="0"
+                max="100"
+                placeholder="Discount %"
+              />
+            </div>
+          </div>
+
+          <!-- Category as a searchable input -->
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label>Category:</label>
+              <select name="category" id="categorySelect" size="5">
+                <option value="Dresses">Dresses</option>
+                <option value="T-shirts">T-shirts</option>
+                <option value="Sleeveless Shirts">Sleeveless Shirts</option>
+                <option value="Socks">Socks</option>
+                <option value="Vests">Vests</option>
+                <option value="Blouses">Blouses</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Colors and Sizes in the same row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label>Colors:</label>
+              <div class="color-input-container">
+                <input
+                  type="color"
+                  class="color-picker"
+                  onchange="addColor(event)"
+                />
+                <div class="selected-colors"></div>
+                <input type="hidden" name="colors" id="colorInput" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Sizes:</label>
+              <div class="size-choices">
+                <label
+                  ><input type="checkbox" name="size[]" value="S" /> S</label
+                >
+                <label
+                  ><input type="checkbox" name="size[]" value="M" /> M</label
+                >
+                <label
+                  ><input type="checkbox" name="size[]" value="L" /> L</label
+                >
+                <label
+                  ><input type="checkbox" name="size[]" value="XL" /> XL</label
+                >
+                <label
+                  ><input type="checkbox" name="size[]" value="XXL" />
+                  XXL</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Choose Image Button -->
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="imageUpload" class="image-upload-btn"
+                >Choose Images</label
+              >
+              <input
+                type="file"
+                id="imageUpload"
+                name="images[]"
+                multiple
+                accept="image/*"
+              />
+              <div class="image-preview" id="imagePreview"></div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit">Add Product</button>
+            <button type="reset">Reset All</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../js/products.js"></script>
+  </body>
+</html>

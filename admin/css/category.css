@@ -171,7 +171,6 @@ th {
   width: 50%;
 }
 
-/* مثال لتأثير انزلاق العنصر */
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -229,7 +228,6 @@ th {
 }
 
 
-/* تنسيق الأزرار */
 button {
   padding: 8px 12px;
   margin: 0 5px;
@@ -239,24 +237,20 @@ button {
   font-size: 14px;
 }
 
-/* زر تحديث */
 button:nth-child(1) {
   background-color: #4caf50;
   color: white;
 }
 
-/* زر حذف */
 button:nth-child(2) {
   background-color: #f44336;
   color: white;
 }
 
-/* زر عند التمرير عليه */
 button:hover {
   opacity: 0.8;
 }
 
-/* إضافة فئة بعد إضافتها */
 .category-added {
   animation: fadeIn 0.5s ease-in;
 }
@@ -271,9 +265,9 @@ button:hover {
 }
 .category-row {
   opacity: 0; /* يبدأ العنصر مخفي */
-  transition: opacity 0.5s ease-in-out; /* تأثير تدريجي على الشفافية */
+  transition: opacity 0.5s ease-in-out;
 }
 
 .category-row.animate {
-  opacity: 1; /* يظهر العنصر تدريجيًا */
+  opacity: 1; 
 }
