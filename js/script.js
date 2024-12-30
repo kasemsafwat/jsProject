@@ -8,36 +8,6 @@ import { attachWishlistListeners } from "./wishlist.js"; // for the wishlist but
 const serverUrl = "https://mohamed-apis.vercel.app";
 console.log(serverUrl);
 
-/* // Get the elements for theme toggle
-const themeToggleButton = document.getElementById("theme-toggle");
-const sunIcon = document.getElementById("sun-icon");
-const moonIcon = document.getElementById("moon-icon");
-const themeLink = document.getElementById("theme-link");
-const darkThemeLink = document.querySelector(
-  'link[rel="stylesheet"][href*="dark-theme.css"]'
-);
-
-// Ensure theme toggle button exists before attaching event listener
-if (themeToggleButton) {
-  themeToggleButton.addEventListener("click", function () {
-    if (darkThemeLink.disabled) {
-      darkThemeLink.removeAttribute("disabled");
-      themeLink.setAttribute("disabled", "true");
-      moonIcon.style.display = "none";
-      sunIcon.style.display = "block";
-      localStorage.setItem("theme", "dark");
-    } else {
-      darkThemeLink.setAttribute("disabled", "true");
-      themeLink.removeAttribute("disabled");
-      moonIcon.style.display = "block";
-      sunIcon.style.display = "none";
-      localStorage.setItem("theme", "light");
-    }
-  });
-}*/
-
-//...................................Navbar.....................................//
-
 //...................................Navbar.....................................//
 
 //___________________________...Search Animation...__________________________________________//
@@ -192,7 +162,6 @@ const searchBar = () => {
   }
 };
 
-
 document.addEventListener("DOMContentLoaded", () => {
   const heartedProducts =
     JSON.parse(localStorage.getItem("heartedProducts")) || [];
@@ -233,7 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
 
 // Initialize data on page load
 document.addEventListener("DOMContentLoaded", async () => {
