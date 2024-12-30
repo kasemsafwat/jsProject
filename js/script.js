@@ -77,21 +77,20 @@ const callApiProducts = async (query = "") => {
 
 // Display product data
 const displayData = async (products) => {
+  const prodContainer = document.getElementById("product-container");
+  const wishlist = JSON.parse(localStorage.getItem("wishlist")) || []; // Fetch wishlist from localStorage
+
   prodContainer.textContent = "";
 
-  if (products.length === 0) {
-    prodContainer.textContent = "No products found!";
-    return;
-  }
-
-  const fragment = document.createDocumentFragment();
-
   products.forEach((product) => {
-    const prodCardHTML = `
-      <div class="product">
-        <img src="${product.Images[0]?.secure_url}" alt="${product.title}" />
+    const isInWishlist = wishlist.some((item) => item.id === product._id); // Check if product is in wishlist
+    const prodCard = document.createElement("div");
+    prodCard.classList.add("product");
+
+    prodCard.innerHTML = `
+        <img src="${product.Images[0].secure_url}" alt="${product.title}" />
         <div class="discription">
-          <span>${product.categoryId?.name}</span>
+          <span>${product.categoryId.name}</span>
           <h5>${product.title}</h5>
           <div class="star">
             <i class="fas fa-star"></i>
@@ -102,21 +101,25 @@ const displayData = async (products) => {
           <h4>${product.price}$</h4>
         </div>
         <a href="product.html?id=${product._id}">
-          <i id="cart-${product._id}" class="fa-solid fa-cart-shopping cart"></i>
+          <i class="fa-solid fa-cart-shopping cart"></i>
         </a>
-        <button class="heart-button" onclick="addtolove()">
-          <span class="heart-icon">&#9825;</span>
+        <button class="heart-button ${
+          isInWishlist ? "filled" : ""
+        }" data-product='${JSON.stringify({
+      id: product._id,
+      name: product.title,
+      price: product.price,
+      image: product.Images[0].secure_url,
+    })}'>
+          <span class="heart-icon">${
+            isInWishlist ? "&#9829;" : "&#9825;"
+          }</span>
         </button>
-      </div>
-    `;
-
-    const prodCard = document.createElement("div");
-    prodCard.innerHTML = prodCardHTML;
-
-    fragment.appendChild(prodCard.firstElementChild);
+      `;
+    prodContainer.appendChild(prodCard);
   });
 
-  prodContainer.appendChild(fragment);
+  // Attach wishlist functionality to heart buttons
   attachWishlistListeners();
 };
 
@@ -188,6 +191,49 @@ const searchBar = () => {
     });
   }
 };
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const heartedProducts =
+    JSON.parse(localStorage.getItem("heartedProducts")) || [];
+
+  // Set hearted products as filled on page load
+  heartedProducts.forEach((productId) => {
+    const heartButton = document.querySelector(
+      `.heart-button[data-product*='"id":"${productId}"']`
+    );
+    if (heartButton) {
+      heartButton.classList.add("filled");
+      heartButton.querySelector(".heart-icon").innerHTML = "&#9829;";
+    }
+  });
+
+  // Add event listener to all heart buttons
+  document.querySelectorAll(".heart-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const productData = JSON.parse(button.dataset.product);
+      const productId = productData.id;
+
+      if (button.classList.contains("filled")) {
+        // Remove from heartedProducts
+        const updatedHearted = heartedProducts.filter((id) => id !== productId);
+        localStorage.setItem("heartedProducts", JSON.stringify(updatedHearted));
+        button.classList.remove("filled");
+        button.querySelector(".heart-icon").innerHTML = "&#9825;";
+      } else {
+        // Add to heartedProducts
+        heartedProducts.push(productId);
+        localStorage.setItem(
+          "heartedProducts",
+          JSON.stringify(heartedProducts)
+        );
+        button.classList.add("filled");
+        button.querySelector(".heart-icon").innerHTML = "&#9829;";
+      }
+    });
+  });
+});
+
 
 // Initialize data on page load
 document.addEventListener("DOMContentLoaded", async () => {

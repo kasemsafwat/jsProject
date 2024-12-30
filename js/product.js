@@ -54,6 +54,21 @@ function createMainProductImage(mainImageUrl) {
   return singleProImg;
 }
 
+// Function to show popup messages
+function showPopupMessage(message, type) {
+  const popup = document.createElement("div");
+  popup.className = `popup-message ${type}`;
+  popup.textContent = message;
+
+  document.body.appendChild(popup);
+
+  // Show the popup and remove it after 3 seconds
+  setTimeout(() => {
+    popup.style.opacity = "0";
+    setTimeout(() => popup.remove(), 500);
+  }, 3000);
+}
+
 // Create product details
 function createProductDetails(product) {
   const singleProDetails = document.createElement("div");
@@ -139,12 +154,21 @@ async function handleAddToCart(event) {
       refreshToken: refreshToken || null,
       accessToken: accessToken || null,
     });
+<<<<<<< Updated upstream
     showPopupMessage("Product added to your cart successfully!", "success");
     // alert("Product added to your cart successfully!");
+=======
+
+    showPopupMessage("Product successfully added to your cart!", "success");
+>>>>>>> Stashed changes
   } catch (error) {
     showPopupMessage("Error adding product to cart:!", "error");
 
     console.error("Error adding product to cart:", error);
+    showPopupMessage(
+      "Failed to add product to cart. Please try again.",
+      "error"
+    );
   }
 }
 const displayData = async (products) => {
@@ -213,10 +237,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   const categoryId = await displayDetails();
   console.log(categoryId._id);
 
+  await similarProducts(categoryId._id);
+
   const addToCartButton = document.querySelector(".normal");
   if (addToCartButton) {
-    addToCartButton.addEventListener("click", handleAddToCart);
+    addToCartButton.addEventListener("click", async (event) => {
+      await handleAddToCart();
+      event.preventDefault(); // Prevent default action
+    });
   }
-
-  const similar = await similarProducts(categoryId._id);
 });

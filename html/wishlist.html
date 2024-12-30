@@ -6,73 +6,143 @@
     <title>Wishlist</title>
     <link rel="stylesheet" href="../css/all.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      #wishlist-container {
+        margin: 20px auto;
+        width: 90%;
+      }
+
+      #clear-wishlist {
+        background-color: #d9534f;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      #clear-wishlist:hover {
+        background-color: #c9302c;
+      }
+
+      #wishlist-popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+        z-index: 9999;
+      }
+
+      .close-popup {
+        margin-top: 10px;
+        background-color: #d9534f;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .close-popup:hover {
+        background-color: #c9302c;
+      }
+    </style>
   </head>
   <body>
-    <!-- header and navbar -->
     <section id="header" class="shopping-nav">
-      <a href="../index.html"
-        ><img
+      <a href="../index.html">
+        <img
           src="../image/E-commImg/logo-high-resolution-logo-transparent.png"
           alt="logo"
           class="logo"
           width="90px"
-      /></a>
+        />
+      </a>
       <div>
         <ul id="navbar">
-          <li><a href="../index.html" class="active">Home</a></li>
+          <li><a href="../index.html">Home</a></li>
           <li><a href="shop.html">Shop</a></li>
           <li><a href="../index.html#about">About</a></li>
-          <!-- <li><a href="contact.html">Contact Us</a></li> -->
-          <li><a id="loginId" href="html/login.html">Login</a></li>
+          <li><a href="login.html">Login</a></li>
           <li>
-            <a href=" cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
           </li>
           <li>
-            <a href="wishlist.html" class="wishlist-icon">❤️</a>
-          </li>
-          <li id="theme-toggle">
-            <!-- (Light Theme) -->
-            <i class="fa-solid fa-sun" id="sun-icon"></i>
-            <!-- (Dark Theme) -->
-            <i
-              class="fa-solid fa-moon"
-              id="moon-icon"
-              style="display: none"
-            ></i>
+            <a href="wishlist.html" class="wishlist-icon active">❤️</a>
           </li>
         </ul>
       </div>
     </section>
 
-    <table>
-      <thead>
-        <tr>
-          <th>Select</th>
-          <th>Product Name</th>
-          <th>Price</th>
-          <th>Date Added</th>
-          <th>Stock Status</th>
-          <th>Add to Cart</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input type="checkbox" /></td>
-          <td>Product 1</td>
-          <td>$10</td>
-          <td>January 1, 2024</td>
-          <td>In Stock</td>
-          <td class="actions">
-            <button class="add-to-cart">Add to Cart</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <div class="button-container">
-      <button class="add-selected">Add Selected</button>
-      <button class="add-all">Add All</button>
+    <div id="wishlist-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody id="wishlist-table-body">
+          <!-- Wishlist items will be dynamically populated here -->
+        </tbody>
+      </table>
+      <button id="clear-wishlist">Clear All</button>
     </div>
-    <script src="../js/index.js"></script>
-    <script type="module" src="../js/script.js"></script>
+
+    <!-- Popup -->
+    <div id="wishlist-popup">
+      <p id="wishlist-popup-message">Wishlist cleared!</p>
+      <button class="close-popup">Close</button>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const wishlistTableBody = document.getElementById(
+          'wishlist-table-body'
+        );
+        const clearWishlistButton = document.getElementById('clear-wishlist');
+        const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        // Populate table
+        wishlist.forEach((product) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+      <td>${product.name}</td>
+      <td>${product.price}$</td>
+      <td><img src="${product.image}" alt="${product.name}" width="100"/></td>
+      <td><button class="remove-wishlist" data-id="${product.id}">Remove</button></td>
+    `;
+          wishlistTableBody.appendChild(row);
+        });
+
+        // Add remove functionality
+        document.querySelectorAll('.remove-wishlist').forEach((button) => {
+          button.addEventListener('click', function () {
+            const productId = this.dataset.id;
+            const updatedWishlist = wishlist.filter(
+              (item) => item.id !== productId
+            );
+            localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+            this.closest('tr').remove();
+          });
+        });
+
+        // Add Clear All functionality
+        clearWishlistButton.addEventListener('click', () => {
+          localStorage.removeItem('wishlist');
+          wishlistTableBody.innerHTML = '';
+        });
+      });
+    </script>
   </body>
 </html>
