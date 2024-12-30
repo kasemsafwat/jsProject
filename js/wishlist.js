@@ -1,78 +1,70 @@
-// wishlist.js
-
+// Popup and buttons
 const wishlistPopup = document.getElementById("wishlist-popup");
 const closePopupButton = document.getElementById("close-popup-button");
 const viewWishlistButton = document.getElementById("view-wishlist-button");
 const popupMessage = document.getElementById("wishlist-popup-message");
 
-// We'll share one popup state among all buttons
-let isPopupOpen = false; // Track whether popup is open (prevent spamming)
-
-/************************************************************
-  1) Attach click listeners to all .heart-button elements
-*************************************************************/
+// Attach Wishlist Listeners
 export function attachWishlistListeners() {
-  // Select ALL .heart-button (since we have multiple product cards)
   const heartButtons = document.querySelectorAll(".heart-button");
 
   heartButtons.forEach((button) => {
-    // Keep local state for THIS button's wishlist status
-    let isInWishlist = false;
-
-    // Add click listener
     button.addEventListener("click", function () {
-      // If popup is already open, ignore clicks
-      if (isPopupOpen) return;
-
-      // Toggle the "isInWishlist" for this particular button
-      isInWishlist = !isInWishlist;
-
-      // The heart icon <span> inside THIS button
       const heartIconSpan = this.querySelector(".heart-icon");
+      const productData = this.dataset.product
+        ? JSON.parse(this.dataset.product)
+        : null;
 
-      if (isInWishlist) {
-        heartIconSpan.innerHTML = "&#9829;"; // ♥
-        // Add .filled so it displays red (CSS sets .heart-button.filled { color: red; })
-        this.classList.add("filled");
-        popupMessage.textContent = "Added to wishlist";
-      } else {
-        heartIconSpan.innerHTML = "&#9825;"; // ♡
+      if (this.classList.contains("filled")) {
+        // Remove from wishlist
         this.classList.remove("filled");
-        popupMessage.textContent = "Removed from wishlist";
+        heartIconSpan.innerHTML = "&#9825;";
+        removeFromWishlist(productData.id);
+        showPopup("Removed from wishlist");
+      } else {
+        // Add to wishlist
+        this.classList.add("filled");
+        heartIconSpan.innerHTML = "&#9829;";
+        addToWishlist(productData);
+        showPopup("Added to wishlist");
       }
-
-      // Show popup
-      wishlistPopup.style.display = "block";
-      isPopupOpen = true;
-
-      // Disable THIS button while the popup is open
-      this.disabled = true;
     });
   });
 }
 
-/**************************************
-  2) Popup “Close” and “View Wishlist”
-**************************************/
-closePopupButton.addEventListener("click", function () {
-  // Hide popup
-  wishlistPopup.style.display = "none";
-  isPopupOpen = false;
+// Add product to localStorage
+function addToWishlist(product) {
+  const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  if (!wishlist.some((item) => item.id === product.id)) {
+    wishlist.push(product);
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+  }
+}
 
-  // Re-enable ALL heart buttons
-  const heartButtons = document.querySelectorAll(".heart-button");
-  heartButtons.forEach((btn) => (btn.disabled = false));
+// Remove product from localStorage
+function removeFromWishlist(productId) {
+  let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+  wishlist = wishlist.filter((item) => item.id !== productId);
+  localStorage.setItem("wishlist", JSON.stringify(wishlist));
+}
+
+// Show popup
+function showPopup(message) {
+  popupMessage.textContent = message;
+  wishlistPopup.style.display = "block";
+
+  // Automatically close the popup after 3 seconds
+  setTimeout(() => {
+    wishlistPopup.style.display = "none";
+  }, 3000);
+}
+
+// Add event listener for "Close" button
+closePopupButton.addEventListener("click", () => {
+  wishlistPopup.style.display = "none";
 });
 
-viewWishlistButton.addEventListener("click", function () {
-  // Example: navigate to wishlist page
+// Add event listener for "View Wishlist" button
+viewWishlistButton.addEventListener("click", () => {
   window.location.href = "wishlist.html";
-
-  // Hide popup
-  wishlistPopup.style.display = "none";
-  isPopupOpen = false;
-
-  // Re-enable all heart buttons
-  const heartButtons = document.querySelectorAll(".heart-button");
-  heartButtons.forEach((btn) => (btn.disabled = false));
 });

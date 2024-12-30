@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/order.css" />
-    <title>Admin Products Page</title>
-  </head>
-  <body>
-    <div class="container">
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <h1>Dashboard</h1>
-        <ul>
-          <li><a href="./categorys.html">Categories</a></li>
-          <li><a href="./products.html">Products</a></li>
-          <li><a href="#">Orders</a></li>
-        </ul>
-      </div>
-
-      <!-- ======================================= -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Orders</title>
+  <link rel="stylesheet" href="../css/order.css">
+</head>
+<body>
+  <div id="admin-orders">
+    <h1>Admin Orders Management</h1>
+    <div id="search-bar">
+      <input type="text" id="search-input" placeholder="Search by User Name or Order ID">
+      <button id="search-button">Search</button>
     </div>
-  </body>
+    <div id="order-container"></div>
+    <div id="pagination-container"></div>
+  </div>
+
+  <!-- Popup Message -->
+  <div id="popup-message" class="popup">
+    <span id="popup-text"></span>
+  </div>
+
+  <script type="module" src="../js/orders.js"></script>
+</body>
 </html>
