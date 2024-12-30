@@ -71,7 +71,7 @@
           <li><a href="../index.html">Home</a></li>
           <li><a href="shop.html">Shop</a></li>
           <li><a href="../index.html#about">About</a></li>
-          <li><a href="login.html">Login</a></li>
+          <li><a id="loginId" href="html/login.html">Login</a></li>
           <li>
             <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
           </li>
@@ -106,16 +106,16 @@
     </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener("DOMContentLoaded", () => {
         const wishlistTableBody = document.getElementById(
-          'wishlist-table-body'
+          "wishlist-table-body"
         );
-        const clearWishlistButton = document.getElementById('clear-wishlist');
-        const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const clearWishlistButton = document.getElementById("clear-wishlist");
+        const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
         // Populate table
         wishlist.forEach((product) => {
-          const row = document.createElement('tr');
+          const row = document.createElement("tr");
           row.innerHTML = `
       <td>${product.name}</td>
       <td>${product.price}$</td>
@@ -126,23 +126,24 @@
         });
 
         // Add remove functionality
-        document.querySelectorAll('.remove-wishlist').forEach((button) => {
-          button.addEventListener('click', function () {
+        document.querySelectorAll(".remove-wishlist").forEach((button) => {
+          button.addEventListener("click", function () {
             const productId = this.dataset.id;
             const updatedWishlist = wishlist.filter(
               (item) => item.id !== productId
             );
-            localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
-            this.closest('tr').remove();
+            localStorage.setItem("wishlist", JSON.stringify(updatedWishlist));
+            this.closest("tr").remove();
           });
         });
 
         // Add Clear All functionality
-        clearWishlistButton.addEventListener('click', () => {
-          localStorage.removeItem('wishlist');
-          wishlistTableBody.innerHTML = '';
+        clearWishlistButton.addEventListener("click", () => {
+          localStorage.removeItem("wishlist");
+          wishlistTableBody.innerHTML = "";
         });
       });
     </script>
+    <script type="module" src="../js/index.js"></script>
   </body>
 </html>
