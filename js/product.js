@@ -87,6 +87,9 @@ function createProductDetails(product) {
       </select>
       <input type="number" id="quantity" value="1" min="1" style="width:60px" max="3">
       <button class="normal">Add To Cart</button>
+      <br>
+      <button class="not-normal" id="continue-shopping">Back To Shop</button>
+      <button class="not-normal" id="go-to-cart">Go To Cart</button>
       <h4>Product Details</h4>
       <span>${product.desc}</span>
     </div>`;
@@ -236,10 +239,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   await similarProducts(categoryId._id);
 
   const addToCartButton = document.querySelector(".normal");
+  const continueShopping = document.getElementById("continue-shopping");
+  const goToCart = document.getElementById("go-to-cart");
   if (addToCartButton) {
     addToCartButton.addEventListener("click", async (event) => {
       await handleAddToCart();
-      event.preventDefault(); // Prevent default action
+      event.preventDefault();
+    });
+  }
+  if (continueShopping) {
+    continueShopping.addEventListener("click", async (event) => {
+      window.location.href = "../html/shop.html";
+      console.log("shoooooooop");
+    });
+  }
+  if (goToCart) {
+    goToCart.addEventListener("click", async (event) => {
+      window.location.href = "../html/cart.html";
+      console.log("caaaaaaaaaaaaaaaaart");
     });
   }
 });
