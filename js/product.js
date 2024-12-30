@@ -70,7 +70,7 @@ function createProductDetails(product) {
         <option>Small</option>
         <option>Large</option>
       </select>
-      <input type="number" id="quantity" value="1" />
+      <input type="number" id="quantity" value="1" min="1" style="width:60px" max="3">
       <button class="normal">Add To Cart</button>
       <h4>Product Details</h4>
       <span>${product.desc}</span>

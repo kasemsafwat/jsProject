@@ -25,7 +25,7 @@ fileInput.addEventListener("change", function () {
   });
 });
 
-categorySearch.addEventListener("input", function () {
+/* categorySearch.addEventListener("input", function () {
   const searchTerm = categorySearch.value.toLowerCase();
 
   // Loop through each option and check if the option text contains the search term
@@ -38,7 +38,7 @@ categorySearch.addEventListener("input", function () {
       option.style.display = "none"; // Hide non-matching option
     }
   });
-});
+}); */
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -57,3 +57,35 @@ form.addEventListener("submit", function (e) {
     }
   });
 });
+
+/************************************************************************************/
+
+document
+  .getElementById("productForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent form from submitting
+
+    // Get form data
+    const formData = new FormData(event.target);
+    const dataObject = { color: ["black"] };
+
+    // Iterate through form data and populate the object
+    formData.forEach((value, key) => {
+      // Handle multiple checkbox inputs (sizes)
+      if (key === "size[]") {
+        if (!dataObject[key]) {
+          dataObject[key] = [];
+        }
+        dataObject[key].push(value);
+      } else {
+        dataObject[key] = value;
+      }
+    });
+
+    // Rename "size[]" key to "sizes" for clarity
+    dataObject.sizes = dataObject["size[]"];
+    delete dataObject["size[]"];
+
+    // Log the data object to the console
+    console.log(dataObject);
+  });
