@@ -38,14 +38,15 @@ const sendDataToAPI = async ({ data, accessToken, refreshToken }) => {
     console.log(res);
 
     if (!response.ok) {
+      console.log();
+      
       await customeError(res.message, addCategoryButton.nextElementSibling);
       return null;
     }
 
-    // إضافة العنصر إلى الجدول مع الأنيميشن
     addCategoryToTable({
       name: name.value,
-      _id: res.category._id, // إضافة الـ ID من الـ API
+      _id: res.category._id,
     });
 
     return res;
@@ -195,15 +196,7 @@ const deleteCategory = async (categoryId, button) => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", (event) => {
-  loadCategories();
-
-  const addCategoryButton = document.getElementById("addCategoryButton");
-  if (!addCategoryButton) {
-    console.error("Add Category button not found.");
-    return;
-  }
-
+const addCategoryBtn = async () => {
   addCategoryButton.addEventListener("click", async (event) => {
     event.preventDefault();
 
@@ -220,4 +213,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     console.log(res);
   });
+};
+
+document.addEventListener("DOMContentLoaded", async (event) => {
+  await loadCategories(); 
+  addCategoryBtn();
 });

@@ -1,5 +1,6 @@
 import { apiSendRequest } from "./apiFeature.js";
 const serverUrl = "https://mohamed-apis.vercel.app";
+let cartId = "";
 console.log(serverUrl);
 const cartItems = document.querySelectorAll(".cart-item");
 const deliveryButtons = document.querySelectorAll(".delivery-button");
@@ -100,6 +101,7 @@ const getCartInfo = async () => {
   });
 
   console.log(cart);
+  cartId = cart._id;
   return cart;
 };
 
@@ -189,6 +191,28 @@ const displayData = (cart) => {
   document.getElementById("total-price").textContent = `${cart.subTotal + 14}$`;
 };
 
+const checkoutClicked = async () => {
+  const checkout = document.getElementById("proceed-checkout");
+
+  checkout.addEventListener("click", async (event) => {
+    const { payment } = await apiSendRequest({
+      url: `${serverUrl}/order/cardToOrder`,
+      method: "POST",
+      data: {
+        cartId: cartId,
+        paymentMethod: "card",
+        address: "egypt",
+        phoneNumbers: "01152347186",
+      },
+      accessToken,
+      refreshToken,
+    });
+    
+    console.log(payment);
+
+    window.location.href = payment.url;
+  });
+};
 document.addEventListener("DOMContentLoaded", async function () {
   getcartItems();
   updateTotals();
@@ -208,6 +232,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       await deleteFromCart(id);
     });
   });
+
+  await checkoutClicked();
 });
 
 document.getElementById("continue-shopping").addEventListener("click", () => {
