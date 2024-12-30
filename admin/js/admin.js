@@ -1,3 +1,5 @@
+import { showPopupMessage } from './alert.js';
+
 // Function to change content dynamically
 function showSection(sectionId) {
   document.querySelectorAll(".section").forEach((section) => {
@@ -59,11 +61,13 @@ function deleteRow(button) {
 }
 
 function approveOrder() {
-  alert("Order Approved");
+  showPopupMessage("Order Approved!", "success");
+  // alert("Order Approved");
 }
 
 function rejectOrder() {
-  alert("Order Rejected");
+  showPopupMessage("Order Rejected!", "error");
+  // alert("Order Rejected");
 }
 
 content.innerHTML = contentHtml;

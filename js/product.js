@@ -1,6 +1,7 @@
 // product.js
 
 import { apiSendRequest } from "./apiFeature.js";
+import { showPopupMessage } from "./alert.js";
 
 // Constants
 const serverUrl = "https://mohamed-apis.vercel.app";
@@ -110,7 +111,11 @@ async function handleAddToCart(event) {
 
   if (!tokens) {
     // ##Edit this
-    alert("plaese login First");
+    showPopupMessage("Please Login First!", "error");
+    // alert("plaese login First");
+    setTimeout(() => {
+      window.location.href = "../html/login.html";
+    }, 4000);
   }
   const data = {
     productId,
@@ -134,9 +139,11 @@ async function handleAddToCart(event) {
       refreshToken: refreshToken || null,
       accessToken: accessToken || null,
     });
-
-    alert("Product added to your cart successfully!");
+    showPopupMessage("Product added to your cart successfully!", "success");
+    // alert("Product added to your cart successfully!");
   } catch (error) {
+    showPopupMessage("Error adding product to cart:!", "error");
+
     console.error("Error adding product to cart:", error);
   }
 }
