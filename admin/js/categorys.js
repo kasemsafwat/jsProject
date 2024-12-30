@@ -97,7 +97,8 @@ const addCategoryToTable = (categoryData) => {
   });
 
   deleteButton.addEventListener("click", () => {
-    alert("ARE U SURE");
+
+    // alert("ARE U SURE");
     deleteCategory(categoryData._id, row);
   });
 };

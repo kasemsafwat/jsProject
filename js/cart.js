@@ -1,4 +1,5 @@
 import { apiSendRequest } from "./apiFeature.js";
+import { showPopupMessage } from './alert.js';
 const serverUrl = "https://mohamed-apis.vercel.app";
 let cartId = "";
 console.log(serverUrl);
@@ -123,14 +124,17 @@ const deleteFromCart = async (id) => {
       if (itemToRemove) {
         itemToRemove.remove();
       }
-
-      alert("deleted success");
+      showPopupMessage('Successfully Deleted!', 'success')
+      window.location.reload();
+      // alert("deleted success");
     } else {
-      alert("Error when delete product");
+      showPopupMessage("Couldn't be deleted!", 'error')
+      // alert("Error when delete product");
     }
   } catch (error) {
     console.error("Error deleting product:", error);
-    alert("error somthing wrong");
+    showPopupMessage('Something goes wrong!', 'error')
+    // alert("error somthing wrong");
   }
 };
 
