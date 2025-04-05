@@ -19,6 +19,35 @@
         text-align: center;
         border-radius: 5px;
       }
+/* التحكم في أبعاد الصور */
+.small-img {
+  width: 100%;
+  max-width: 120px;
+  height: 67.5px; /* نسبة أبعاد 16:9 مثل YouTube */
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.small-img:hover {
+  transform: scale(1.1);
+}
+
+#mainImg {
+  width: 100%;
+  max-width: 640px; 
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.small-img-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
 
       .product-card img {
         max-width: 100px;

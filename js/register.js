@@ -1,4 +1,4 @@
-import { showPopupMessage } from './alert.js';
+import { showPopupMessage } from "./alert.js";
 
 //  const serverUrl = "https://mohamed-apis.vercel.app";
 const serverUrl = "https://mohamed-apis.vercel.app";
@@ -152,7 +152,7 @@ const sendDataToAPI = async (data) => {
 //edit this with
 const registedSuccessfully = () => {
   // alert("account created successfully :)");
-  showPopupMessage('Account created successfully♥️❤️!', 'success')
+  showPopupMessage("Account created successfully♥️❤️!", "success");
   setTimeout(() => {
     window.location.href = "../html/login.html";
   }, 4000);

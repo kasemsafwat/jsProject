@@ -1,5 +1,5 @@
 import { apiSendRequest } from "./apiFeature.js";
-import { showPopupMessage } from './alert.js';
+import { showPopupMessage } from "./alert.js";
 const serverUrl = "https://mohamed-apis.vercel.app";
 let cartId = "";
 console.log(serverUrl);
@@ -124,16 +124,16 @@ const deleteFromCart = async (id) => {
       if (itemToRemove) {
         itemToRemove.remove();
       }
-      showPopupMessage('Successfully Deleted!', 'success')
+      showPopupMessage("Successfully Deleted!", "success");
       window.location.reload();
       // alert("deleted success");
     } else {
-      showPopupMessage("Couldn't be deleted!", 'error')
+      showPopupMessage("Couldn't be deleted!", "error");
       // alert("Error when delete product");
     }
   } catch (error) {
     console.error("Error deleting product:", error);
-    showPopupMessage('Something goes wrong!', 'error')
+    showPopupMessage("Something goes wrong!", "error");
     // alert("error somthing wrong");
   }
 };
@@ -211,7 +211,7 @@ const checkoutClicked = async () => {
       accessToken,
       refreshToken,
     });
-    
+
     console.log(payment);
 
     window.location.href = payment.url;

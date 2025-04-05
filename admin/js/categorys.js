@@ -39,7 +39,7 @@ const sendDataToAPI = async ({ data, accessToken, refreshToken }) => {
 
     if (!response.ok) {
       console.log();
-      
+
       await customeError(res.message, addCategoryButton.nextElementSibling);
       return null;
     }
@@ -97,7 +97,6 @@ const addCategoryToTable = (categoryData) => {
   });
 
   deleteButton.addEventListener("click", () => {
-
     // alert("ARE U SURE");
     deleteCategory(categoryData._id, row);
   });
@@ -217,6 +216,6 @@ const addCategoryBtn = async () => {
 };
 
 document.addEventListener("DOMContentLoaded", async (event) => {
-  await loadCategories(); 
+  await loadCategories();
   addCategoryBtn();
 });

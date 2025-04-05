@@ -5,6 +5,7 @@
 import { apiSendRequest } from "./apiFeature.js";
 import { attachWishlistListeners } from "./wishlist.js"; // for the wishlist button to work
 
+// const serverUrl = "https://mohamed-apis.vercel.app";
 const serverUrl = "https://mohamed-apis.vercel.app";
 console.log(serverUrl);
 
@@ -56,12 +57,15 @@ const displayData = async (products) => {
     const isInWishlist = wishlist.some((item) => item.id === product._id); // Check if product is in wishlist
     const prodCard = document.createElement("div");
     prodCard.classList.add("product");
+    prodCard.classList.add("card");
 
     prodCard.innerHTML = `
-        <img src="${product.Images[0].secure_url}" alt="${product.title}" />
+        <img src="${product.Images[0].secure_url}" class="card-img-top" alt="${
+      product.title
+    }" class="card-img-top" style="width: 100%; height: auto; object-fit: contain;" />
         <div class="discription">
           <span>${product.categoryId.name}</span>
-          <h5>${product.title}</h5>
+          <h5 class="card-title">${product.title}</h5>
           <div class="star">
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>

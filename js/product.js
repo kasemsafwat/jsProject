@@ -8,7 +8,7 @@ const prodDetails = document.getElementById("prodetails");
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
-// Functions for handling image change
+// Function to handle image change
 function changeImage(imageSrc) {
   const mainImage = document.getElementById("mainImg");
   mainImage.src = imageSrc;
@@ -17,41 +17,31 @@ function changeImage(imageSrc) {
 // Create product images
 const createProductImages = (productImages) => {
   const smallImgGroup = document.createElement("div");
+  smallImgGroup.classList.add("img-thumbnail");
+  smallImgGroup.classList.add("rounded");
   smallImgGroup.classList.add("small-img-group");
 
-  const imagesHTML = productImages
-    .map((image) => {
-      return `
-      <div class="small-img-col">
-        <img
-          width="100%"
-          class="small-img"
-          onclick="changeImage('${image.secure_url}')"
-          src="${image.secure_url}"
-          alt="product"
-        />
-      </div>`;
-    })
-    .join("");
+  productImages.forEach((image) => {
+    const imgCol = document.createElement("div");
+    imgCol.classList.add("small-img-col");
+    imgCol.classList.add("img-thumbnail");
+    imgCol.classList.add("rounded");
 
-  smallImgGroup.innerHTML = imagesHTML;
+    const imgElement = document.createElement("img");
+    imgElement.src = image.secure_url;
+    imgElement.alt = "product";
+    imgElement.width = "100%";
+    imgElement.classList.add("small-img");
+
+    // Attach event listener for changing the main image
+    imgElement.addEventListener("click", () => changeImage(image.secure_url));
+
+    imgCol.appendChild(imgElement);
+    smallImgGroup.appendChild(imgCol);
+  });
 
   return smallImgGroup;
 };
-
-// Create main product image
-function createMainProductImage(mainImageUrl) {
-  const singleProImg = document.createElement("div");
-  singleProImg.innerHTML = `
-    <img
-      id="mainImg"
-      src="${mainImageUrl}"
-      alt="product"
-      width="100%"
-    />`;
-
-  return singleProImg;
-}
 
 // Function to show popup messages
 function showPopupMessage(message, type) {
@@ -95,6 +85,18 @@ function createProductDetails(product) {
     </div>`;
 
   return singleProDetails;
+}
+
+// Create main product image
+function createMainProductImage(mainImageUrl) {
+  const singleProImg = document.createElement("div");
+  singleProImg.style.marginTop = "50px";
+
+  singleProImg.innerHTML = `
+    <img id="mainImg" src="${mainImageUrl}" class="img-thumbnail rounded" alt="product" width="100%" />
+  `;
+
+  return singleProImg;
 }
 
 // Display product details
